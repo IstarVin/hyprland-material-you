@@ -15,7 +15,7 @@ get_swap_usage() {
 }
 
 get_cpu_temp() {
-    sensors | grep -i 'core ' | awk '{sum+=$3; count+=1} END {if (count > 0) print sum/count; else print "Undefined"}'
+    expr $(cat /sys/devices/virtual/thermal/thermal_zone0/temp) / 1000
 }
 
 get_cpu_name() {

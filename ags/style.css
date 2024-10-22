@@ -471,19 +471,19 @@ window.notification_popups box.notifications {
     transition: all 0.2s ease-in-out, border-radius 0.1s ease-in-out;
 }
 
-.notifications_sidebar_scrollable viewport > box > box > .first .notification {
+.notifications_sidebar_scrollable viewport>box>box>.first .notification {
     border-radius: 14px 14px 6px 6px;
 }
 
-.notifications_sidebar_scrollable viewport > box > box > .last .notification {
+.notifications_sidebar_scrollable viewport>box>box>.last .notification {
     border-radius: 6px 6px 14px 14px;
 }
 
-.notifications_sidebar_scrollable viewport > box > box > .margin_bottom .notification {
+.notifications_sidebar_scrollable viewport>box>box>.margin_bottom .notification {
     margin-bottom: 10px;
 }
 
-.notifications_sidebar_scrollable viewport > box > box > .first.last .notification {
+.notifications_sidebar_scrollable viewport>box>box>.first.last .notification {
     border-radius: 14px;
 }
 
@@ -491,7 +491,7 @@ window.notification_popups box.notifications {
     color: @primary;
 }
 
-.notifications_sidebar_scrollable viewport > box > :last-child {
+.notifications_sidebar_scrollable viewport>box> :last-child {
     margin-bottom: 10px;
 }
 
@@ -625,8 +625,7 @@ window.notification_popups box.notifications {
     color: @surfaceContainerHigh;
 }
 
-.dotbutton:hover {
-}
+.dotbutton:hover {}
 
 .dotbutton.active label {
     color: @secondary;
@@ -1299,6 +1298,7 @@ switch:checked:active slider {
     margin-right: 16px;
     color: @onSurface;
 }
+
 /* Chats */
 .sideleft .textbox {
     background-color: transparent;
@@ -1452,9 +1452,11 @@ switch:checked:active slider {
     0% {
         background-color: transparent;
     }
+
     50% {
         background-color: @outline;
     }
+
     100% {
         background-color: transparent;
     }

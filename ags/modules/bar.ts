@@ -40,20 +40,20 @@ const time = Variable("");
 const date = Variable("");
 
 function getCurrentDateAndTime() {
-    const _date = new Date();
+    // const _date = new Date();
 
-    const year = _date.getFullYear();
-    const month = String(_date.getMonth() + 1).padStart(2, "0");
-    const day = String(_date.getDate()).padStart(2, "0");
+    // const year = _date.getFullYear();
+    // const month = String(_date.getMonth() + 1).padStart(2, "0");
+    // const day = String(_date.getDate()).padStart(2, "0");
 
-    const hours = String(_date.getHours()).padStart(2, "0");
-    const minutes = String(_date.getMinutes()).padStart(2, "0");
+    // const hours = String(_date.getHours()).padStart(2, "0");
+    // const minutes = String(_date.getMinutes()).padStart(2, "0");
 
-    const formattedDate = `${year}-${month}-${day}`;
-    const formattedTime = `${hours}:${minutes}`;
+    const formattedDate = GLib.DateTime.new_now_local().format("%A") // `${year}-${month}-${day}`;
+    const formattedTime = GLib.DateTime.new_now_local().format("%I:%M %p")
 
-    if (time.value != formattedTime) time.setValue(formattedTime);
-    if (date.value != formattedDate) date.setValue(formattedDate);
+    if (time.value != formattedTime) time.setValue(formattedTime!);
+    if (date.value != formattedDate) date.setValue(formattedDate!);
 }
 Utils.interval(1000, getCurrentDateAndTime);
 
@@ -240,6 +240,10 @@ function BatteryLabel() {
             Widget.Label({
                 label: battery.bind("percent").as((p) => `${p > 0 ? p : 0}%`),
                 visible: config.bind("config").as((config) => config.show_battery_percent)
+            }),
+            Widget.Label({
+                label: battery.bind("energy_rate").as((energy_rate) => `  ${energy_rate.toFixed(2)}W`),
+                visible: battery.bind("energy_rate").as((energy_rate) => energy_rate != 0)
             })
         ],
         tooltip_text: battery.bind("percent").as((p) => `Battery: ${p > 0 ? p : 0}%`),
