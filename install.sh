@@ -104,7 +104,12 @@ install_packages() {
 		ttf-font-awesome ttf-opensans ttf-roboto lshw ttf-material-symbols-variable-git \
 		fontconfig dart-sass ttf-meslo-nerd-font-powerlevel10k cpio meson cmake \
 		python-materialyoucolor-git gtksourceview3 gtksourceviewmm cairomm \
-		gtkmm3 tinyxml2 python-requests python-numpy
+		gtkmm3 tinyxml2 python-requests python-numpy lsd fzf zoxide zsh bat less \
+		yazi p7zip fd ffmpegthumbnailer chafa poppler \
+		unzip tmux go bluetooth-autoconnect btop powertop \
+		neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
+		gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector
+
 }
 
 setup_yay() {
@@ -288,7 +293,6 @@ misc_tasks() {
 }
 
 use_zsh() {
-	yay -S --noconfirm zsh
 	sudo chsh -s zsh aj
 }
 
@@ -394,7 +398,7 @@ main() {
 	proceed "Proceed with installing packages?" false && install_packages
 	preference_select "file manager" "filemanager" "nautilus"
 	preference_select "internet browser" "browser" "brave"
-	preference_select "terminal emulator" "terminal" "kitty"
+	preference_select "terminal emulator" "terminal" "alacritty"
 	proceed "Proceed with installing MicroTex?" false && install_microtex
 	proceed "Proceed with setting up sensors?" false && setup_sensors
 	proceed "Proceed with checking config folders?*" && check_config_folders

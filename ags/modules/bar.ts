@@ -159,8 +159,8 @@ function Workspaces() {
     update();
 
     return Widget.EventBox({
-        on_scroll_up: () => dispatch("+1"),
-        on_scroll_down: () => dispatch("-1"),
+        on_scroll_up: () => dispatch("-1"),
+        on_scroll_down: () => dispatch("+1"),
         hpack: "center",
         child: Widget.Box({
             children: workspace_buttons_array.bind(),

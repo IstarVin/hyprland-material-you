@@ -12,7 +12,7 @@ APP=$(jq -r ".$APP_TYPE" "$JSON_FILE")
 # Check if the application is defined in the JSON file
 if [ "$APP" != "null" ]; then
     # Open the specified application
-    $APP
+    $APP $2
 else
     echo "No application defined for $APP_TYPE in $JSON_FILE"
 fi

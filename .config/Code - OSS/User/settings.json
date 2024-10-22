@@ -13,8 +13,5 @@
         "editor.defaultFormatter": "denoland.vscode-deno"
     },
     "editor.formatOnSave": true,
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
     "git.enableSmartCommit": true
 }
