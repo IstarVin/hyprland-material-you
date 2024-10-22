@@ -226,14 +226,17 @@ create_links() {
 	ln -s $HOME/dotfiles/swappy $HOME/.config/swappy
 
 	cd $main_cwd
-	for i in $(find .dots -maxdepth 1 -mindepth 1); do
-  		rm -rf "${HOME:-/home/$USER}/$(basename "$i")"
+	
+	find .dots -maxdepth 1 -mindepth 1 | 
+	while read i; 
+		rm -rf "${HOME:-/home/$USER}/$(basename "$i")"
   		ln -sf "$(pwd)/$i" "${HOME:-/home/$USER}/$(basename "$i")"
 	done
 
-	for i in $(find .config -maxdepth 1 -mindepth 1); do
-		rm -rf "${HOME:-/home/$USER}/$i"
-		ln -sf "$(pwd)/$i" "${HOME:-/home/$USER}/$i"
+	find .config -maxdepth 1 -mindepth 1 | 
+	while read i; 
+		rm -rf "$HOME/$i"
+		ln -sf "$(pwd)/$i" "$HOME/$i"
 	done
 }
 
@@ -281,6 +284,7 @@ misc_tasks() {
 	hyprctl reload
 	ags --init
 	execute_command python $HOME/dotfiles/hypr/scripts/wallpaper.py -R
+	use_zsh
 }
 
 use_zsh() {
@@ -402,7 +406,7 @@ main() {
 	# ask_continue "Proceed with installing Vencord?" false && install_vencord
 	proceed "Proceed with removing GTK buttons?" false && remove_gtk_buttons
 	proceed "Proceed with setting up services?*" && setup_services
-	proceed "Proceed with updating user directories?*" && update_user_dirs
+	# proceed "Proceed with updating user directories?*" && update_user_dirs
 	proceed "Proceed with miscellaneous tasks?*" && misc_tasks
 	proceed "Plymouth Install" && plymouth_install
 	proceed "Setup ROG" && rog_setup
