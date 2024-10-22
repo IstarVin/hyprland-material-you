@@ -219,21 +219,28 @@ copy_files() {
 
 create_links() {
 	echo ":: Creating links"
-	ln -f $HOME/dotfiles/electron-flags.conf $HOME/.config/electron-flags.conf
-	ln -s $HOME/dotfiles/ags $HOME/.config/ags
-	ln -s $HOME/dotfiles/alacritty $HOME/.config/alacritty
-	ln -s $HOME/dotfiles/hypr $HOME/.config/hypr
-	ln -s $HOME/dotfiles/swappy $HOME/.config/swappy
+	# ln -f $HOME/dotfiles/electron-flags.conf $HOME/.config/electron-flags.conf
+	# ln -s $HOME/dotfiles/ags $HOME/.config/ags
+	# ln -s $HOME/dotfiles/alacritty $HOME/.config/alacritty
+	# ln -s $HOME/dotfiles/hypr $HOME/.config/hypr
+	# ln -s $HOME/dotfiles/swappy $HOME/.config/swappy
 
-	cd $main_cwd
-	for i in $(find .dots -maxdepth 1 -mindepth 1); do
-  		rm -rf "${HOME:-/home/$USER}/$(basename "$i")"
-  		ln -sf "$(pwd)/$i" "${HOME:-/home/$USER}/$(basename "$i")"
-	done
+	# cd $main_cwd
+	# for i in "$(find .dots -maxdepth 1 -mindepth 1); do
+  	# 	rm -rf "${HOME:-/home/$USER}/$(basename "$i")"
+  	# 	ln -sf "$(pwd)/$i" "${HOME:-/home/$USER}/$(basename "$i")"
+	# done
 
-	for i in $(find .config -maxdepth 1 -mindepth 1); do
-		rm -rf "${HOME:-/home/$USER}/$i"
-		ln -sf "$(pwd)/$i" "${HOME:-/home/$USER}/$i"
+	# for i in $(find .config -maxdepth 1 -mindepth 1); do
+	# 	# rm -rf "$HOME/$i"
+	# 	# ln -sf "$(pwd)/"$i"" "$$HOME/"$i""
+	# 	# echo "$(pwd)/"$i"" "${HOME:-/home/$USER}/"$i""
+	# 	echo "~/$i"
+	# done
+	find .config -maxdepth 1 -mindepth 1 | 
+	while read i; do 
+		rm -rf "$HOME/$i"
+		ln -sf "$(pwd)/"$i"" "$HOME/"$i""
 	done
 }
 
@@ -411,4 +418,4 @@ main() {
 	echo "Please restart your PC"
 }
 
-main "$@"
+#main "$@"

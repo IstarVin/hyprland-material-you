@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -12,7 +19,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in Powerlevel10k
-#zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -36,7 +43,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 #bindkey -e
@@ -104,14 +111,14 @@ alias charge='asusctl -c'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 # eval "$(warp-cli generate-completions zsh)"
 
-if [[ $TERM != "tmux-"* && $TERM_PROGRAM != "vscode" ]]; then
-source ~/.config/zshrc.d/dots-hyprland.zsh
-fi
+#if [[ $TERM != "tmux-"* && $TERM_PROGRAM != "vscode" ]]; then
+#source ~/.config/zshrc.d/dots-hyprland.zsh
+#fi
 
-source ~/.config/zshrc.d/auto-Hypr.sh
+#source ~/.config/zshrc.d/auto-Hypr.sh
 source /etc/profile
 
 # source ~/.bash_profile
