@@ -107,6 +107,7 @@ alias Balanced='asusctl profile -P Balanced'
 alias Performance='asusctl profile -P Performance'
 
 alias charge='asusctl -c'
+alias keyboard_color='asusctl led-mode static -c 803dba'
 
 # Shell integrations
 eval "$(fzf --zsh)"

@@ -1,6 +1,6 @@
 pkgname=m-microtex-git
 _pkgname=MicroTeX
-pkgver=r492.d87ebec
+pkgver=r494.0e3707f
 pkgrel=1
 pkgdesc="A dynamic, cross-platform, and embeddable LaTeX rendering library"
 arch=("x86_64")

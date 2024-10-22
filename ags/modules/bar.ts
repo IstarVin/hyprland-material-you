@@ -417,6 +417,7 @@ function KeyboardLayout() {
     const widget = Widget.Label({
         class_name: "keyboard",
         visible: keyboard_layout.bind().as((c) => c != "none"),
+        // visible: false,
         label: keyboard_layout.bind()
     });
     return widget;
@@ -470,8 +471,8 @@ function TaskBar() {
                         client.initialTitle === "Settings"
                             ? "emblem-system-symbolic"
                             : client.initialTitle === "Emoji Picker"
-                            ? "face-smile-symbolic"
-                            : undefined;
+                                ? "face-smile-symbolic"
+                                : undefined;
                 } else {
                     icon = getIconNameFromClass(client.class);
                 }
@@ -553,7 +554,7 @@ function Left() {
         // margin_left: 15,
         class_name: "modules_left",
         hpack: "start",
-        spacing: 8, 
+        spacing: 8,
         children: [AppLauncher(), MediaPlayer(), workspaces, TaskBar()] //, OpenSideLeft()
     });
 }
@@ -576,8 +577,8 @@ function Right() {
         class_name: "modules_right",
         hpack: "end",
         spacing: 8,
-        children: [KeyboardLayout(), BatteryLabel(), SysTray(), Applets(), Clock()]
-            // OpenSideBar()]
+        children: [BatteryLabel(), SysTray(), Applets(), Clock(), OpenSideBar()]
+        // KeyboardLayout(), 
     });
 }
 

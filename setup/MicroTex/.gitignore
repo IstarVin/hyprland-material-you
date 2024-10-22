@@ -1,4 +1,5 @@
-/MicroTeX/
-/pkg/
-/src/
-/microtex-git*
+# /MicroTeX/
+# /pkg/
+# /src/
+# /microtex-git*
+[^PKGBUILD]*

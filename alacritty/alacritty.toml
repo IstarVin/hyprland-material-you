@@ -2,3 +2,18 @@ import = [
     "~/.cache/material/alacritty.toml"
 ]
 
+[window]
+padding = { x = 15, y = 15 }
+
+[font]
+normal = {family="SpaceMono Nerd Font Mono"}
+bold = {family="SpaceMono Nerd Font Mono"}
+italic = {family="SpaceMono Nerd Font Mono"}
+bold_italic = {family="SpaceMono Nerd Font Mono"}
+size = 13
+
+[keyboard]
+bindings = [
+    { key = "V", mods = "Control", action = "Paste"},
+]
+
