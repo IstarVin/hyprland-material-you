@@ -1,0 +1,8 @@
+#!/bin/bash
+
+trap 'echo "Exiting loop..."; exit 0' SIGINT # Set up the Ctrl+C (SIGINT) trap
+
+while true; do
+  /bin/cat /sys/class/power_supply/BAT0/power_now
+  sleep 2
+done

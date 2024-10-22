@@ -1,0 +1,19 @@
+{
+    "window.zoomLevel": 1,
+    "window.restoreWindows": "none",
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.iconTheme": "eq-material-theme-icons-light",
+    "svelte.enable-ts-plugin": true,
+    "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
+    "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.external.linuxExec": "foot",
+    "[typescript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "editor.formatOnSave": true,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
+}
