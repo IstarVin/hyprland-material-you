@@ -29,7 +29,7 @@ const AppItem = (repopulate: () => void) => (app: Application) => {
         }),
         on_clicked: (self) => {
             clickCount++;
-            if (clickCount === 2) {
+            if (clickCount === 1) {
                 App.closeWindow(WINDOW_NAME);
                 app.launch();
                 repopulate();

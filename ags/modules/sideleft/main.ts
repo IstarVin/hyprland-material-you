@@ -27,9 +27,17 @@ export function toggleMediaWindow() {
         App.openWindow(WINDOW_NAME);
     }
 }
+export function toggleGeminiWindow() {
+    if (shown.value == "gemini" && sideleft.visible) App.closeWindow(WINDOW_NAME);
+    else {
+        shown.setValue("gemini");
+        App.openWindow(WINDOW_NAME);
+    }
+}
 
 globalThis.toggleMediaWindow = toggleMediaWindow;
 globalThis.toggleAppsWindow = toggleAppsWindow;
+globalThis.toggleGeminiWindow = toggleGeminiWindow;
 
 type ButtonType = {
     page: string;
@@ -151,6 +159,7 @@ function SideLeft() {
     return Widget.Box({
         class_name: "sideleft_main_box",
         hexpand: true,
+        homogeneous: true,
         children: [Navigation()]
     });
 }
@@ -160,8 +169,8 @@ export const sideleft = popupwindow({
 
     class_name: "sideleft",
     visible: false,
-    keymode: "exclusive",
+    keymode: "on-demand",
     child: SideLeft(),
     anchor: ["top", "left", "bottom"],
-    css: "min-width: 443px;"
+    css: "min-width: 443px;",
 });

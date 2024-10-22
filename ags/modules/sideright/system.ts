@@ -12,6 +12,8 @@ type InfoType = {
     ram: string;
     swap: string;
     cpu_temp: string;
+    download: string;
+    upload: string
 };
 
 async function SystemInfo(): Promise<InfoType> {
@@ -172,7 +174,9 @@ export function SystemBox() {
             InfoLabelString("RAM amount", amount_of_ram, ""),
             InfoLabelString("Kernel", kernel_name, ""),
             InfoLabelString("GPU", gpu_name, ""),
-            InfoLabelVariableString("Uptime", cur_uptime, "")
+            InfoLabelVariableString("Uptime", cur_uptime, ""),
+            InfoLabel("Download speed", "download", "B/s"),
+            InfoLabel("Upload speed", "upload", "B/s")
         ],
         vexpand: true
     });

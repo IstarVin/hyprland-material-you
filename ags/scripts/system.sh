@@ -56,7 +56,7 @@ get_uptime() {
 
 get_usage() {
     cat <<EOF
-{"cpu": $(get_cpu_usage), "ram": $(get_ram_usage), "swap": $(get_swap_usage), "cpu_temp": $(get_cpu_temp)}
+{"cpu": $(get_cpu_usage), "ram": $(get_ram_usage), "swap": $(get_swap_usage), "cpu_temp": $(get_cpu_temp), "download": "$(get_download_speed)" , "upload": "$(get_upload_speed)"}
 EOF
 }
 
@@ -73,6 +73,29 @@ get_system_info() {
     "uptime": "$(get_uptime | tr -d '\n')"
 }
 EOF
+}
+
+process_string() {
+    read -r input_string
+    # input_string="$1"
+
+    # Check if the string contains 'K'
+    if [[ $input_string == *K* ]]; then
+        # Remove 'K' from the string
+        input_string="${input_string/K/}"
+
+        # Convert the modified string to an integer and multiply by 1000
+        input_string=$((input_string * 1024))
+    fi
+    echo $input_string
+}
+
+get_download_speed() {
+    ifstat -s $(ip route | awk '/default/ && NR==1 {print $5}') | grep $(ip route | awk '/default/ && NR==1 {print $5}') | awk '{print $6}' | process_string | numfmt --to=iec
+}
+
+get_upload_speed() {
+    ifstat $(ip route | awk '/default/ && NR==1 {print $5}') | grep $(ip route | awk '/default/ && NR==1 {print $5}') | awk '{print $8}' | process_string | numfmt --to=iec
 }
 
 if [[ "$1" == "--cpu-usage" ]]; then
@@ -103,4 +126,8 @@ elif [[ "$1" == "--usage-json" ]]; then
     get_usage
 elif [[ "$1" == "--json" ]]; then
     get_system_info
+elif [[ "$1" == "--download" ]]; then
+    get_download_speed
+elif [[ "$1" == "--upload" ]]; then
+    get_upload_speed
 fi

@@ -94,7 +94,7 @@ function ClipHistItem(entry: string) {
 
     button.connect("clicked", () => {
         clickCount++;
-        if (clickCount === 2) {
+        if (clickCount === 1) {
             App.closeWindow(WINDOW_NAME);
             Utils.execAsync(`${App.configDir}/scripts/cliphist.sh --copy-by-id ${id}`);
             clickCount = 0;

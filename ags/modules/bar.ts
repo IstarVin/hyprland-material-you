@@ -50,7 +50,9 @@ function getCurrentDateAndTime() {
     // const minutes = String(_date.getMinutes()).padStart(2, "0");
 
     const formattedDate = GLib.DateTime.new_now_local().format("%A") // `${year}-${month}-${day}`;
-    const formattedTime = GLib.DateTime.new_now_local().format("%I:%M %p")
+    const formattedTime = GLib.DateTime.new_now_local().format("%I:%M %p") // `${hours}:${minutes}`
+    // const formattedDate = `${year}-${month}-${day}`;
+    // const formattedTime = `${hours}:${minutes}`
 
     if (time.value != formattedTime) time.setValue(formattedTime!);
     if (date.value != formattedDate) date.setValue(formattedDate!);
@@ -313,6 +315,7 @@ function AppLauncher() {
 function OpenSideLeft() {
     const button = Widget.Button({
         class_name: "filled_tonal_button",
+        visible: false,
         on_clicked: () => {
             App.toggleWindow("sideleft");
         },
@@ -383,6 +386,9 @@ function MediaPlayer() {
         on_secondary_click_release: () => {
             Utils.execAsync(["playerctl", "play-pause"]).catch(print);
         },
+        on_middle_click_release: () => {
+            Utils.execAsync(["hyprctl", "dispatch", "togglespecialworkspace", "music"])
+        },
         child: MaterialIcon("play_circle"),
         visible: false,
         tooltip_text: "Unknown"
@@ -419,6 +425,7 @@ function KeyboardLayout() {
 function OpenSideBar() {
     const button = Widget.Button({
         class_name: "filled_tonal_button",
+        visible: false,
         on_primary_click_release: () => {
             App.toggleWindow("sidebar");
         },
@@ -546,8 +553,8 @@ function Left() {
         // margin_left: 15,
         class_name: "modules_left",
         hpack: "start",
-        spacing: 8,
-        children: [AppLauncher(), OpenSideLeft(), MediaPlayer(), workspaces, TaskBar()]
+        spacing: 8, 
+        children: [AppLauncher(), MediaPlayer(), workspaces, TaskBar()] //, OpenSideLeft()
     });
 }
 
@@ -569,7 +576,8 @@ function Right() {
         class_name: "modules_right",
         hpack: "end",
         spacing: 8,
-        children: [KeyboardLayout(), BatteryLabel(), SysTray(), Applets(), Clock(), OpenSideBar()]
+        children: [KeyboardLayout(), BatteryLabel(), SysTray(), Applets(), Clock()]
+            // OpenSideBar()]
     });
 }
 

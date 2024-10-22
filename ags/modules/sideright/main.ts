@@ -10,7 +10,7 @@ export const sideright = popupwindow({
 
     class_name: "sidebar",
     visible: false,
-    keymode: "exclusive",
+    keymode: "on-demand",
     child: SideBar(),
     anchor: ["top", "right", "bottom"],
     css: "min-width: 443px;"
