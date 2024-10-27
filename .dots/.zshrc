@@ -120,7 +120,7 @@ eval "$(zoxide init --cmd cd zsh)"
 #fi
 
 #source ~/.config/zshrc.d/auto-Hypr.sh
-source /etc/profile
+# source /etc/profile
 
 # source ~/.bash_profile
 

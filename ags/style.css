@@ -654,11 +654,11 @@ window.notification_popups box.notifications {
 }
 
 .outline_button:hover {
-    background-color: mix(@primaryFixed, transparent, 0.8);
+    background-color: mix(@primaryFixed, transparent, 0.7);
 }
 
 .outline_button:focus {
-    background-color: mix(@primaryFixed, transparent, 0.8);
+    background-color: mix(@primaryFixed, transparent, 0.7);
     border-color: @primary;
 }
 

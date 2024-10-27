@@ -193,6 +193,33 @@ function Clock() {
     });
 }
 
+function Network() {
+    return Widget.Box({
+        children: [
+            Widget.Box({
+                class_name: "",
+                visible: true,
+                children: [
+                    MaterialIcon("download_2", "16px"),
+                    Widget.Label({
+
+                    })
+                ]
+            }),
+            Widget.Box({
+                class_name: "",
+                visible: true,
+                children: [
+                    MaterialIcon("upload_2", "16px"),
+                    Widget.Label({
+
+                    })
+                ]
+            }),
+        ]
+    })
+}
+
 const battery_icons = {
     charging: {
         100: "battery_charging_full",

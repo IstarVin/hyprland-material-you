@@ -330,8 +330,8 @@ export function Management() {
     });
     const dot_buttons = page_names.map((_, index) => DotButton(index));
     return Widget.EventBox({
-        on_scroll_up: () => current_page.setValue(Math.min(current_page.value + 1, number_of_pages - 1)),
-        on_scroll_down: () => current_page.setValue(Math.max(current_page.value - 1, 0)),
+        on_scroll_down: () => current_page.setValue(Math.min(current_page.value + 1, number_of_pages - 1)),
+        on_scroll_up: () => current_page.setValue(Math.max(current_page.value - 1, 0)),
         child: Widget.Box({
             orientation: Gtk.Orientation.VERTICAL,
             children: [

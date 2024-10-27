@@ -19,7 +19,10 @@ function Button({ icon, command, tooltip, ...props }) {
         class_name: "outline_button",
         on_clicked: (self) => {
             clickCount++;
-            if (clickCount === 2) {
+            if (clickCount === 1) {
+                self.toggleClassName()
+            }
+            else if (clickCount === 2) {
                 Utils.execAsync(command).catch(print);
                 clickCount = 0;
             }

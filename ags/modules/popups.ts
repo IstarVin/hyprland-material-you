@@ -43,13 +43,13 @@ function get_brightness_icon(brightness: number): string {
 type popup_on_change = ((self: Slider<any>) => void) | undefined;
 type popup_setup =
     | ((
-          self: Revealer<
-              Box<Gtk.Widget | Slider<unknown>, unknown>,
-              {
-                  count: number;
-              }
-          >
-      ) => void)
+        self: Revealer<
+            Box<Gtk.Widget | Slider<unknown>, unknown>,
+            {
+                count: number;
+            }
+        >
+    ) => void)
     | undefined;
 
 const default_popup = (
@@ -150,6 +150,7 @@ export const popups = (monitor = 0) => {
     return Widget.Window({
         monitor,
         name: `popups${monitor}`,
+        layer: "overlay",
         child: Widget.Box({
             css: "min-height: 1px; min-width: 1px;",
             vertical: true,
