@@ -1,4 +1,9 @@
 [
+    //General
+    {
+        "command": "workbench.action.toggleZenMode",
+        "key": "ctrl-shift-z"
+    },
     //Navigating
     {
         "command": "workbench.action.navigateLeft",
@@ -60,7 +65,8 @@
     },
     {
         "command": "workbench.action.closeActiveEditor",
-        "key": "ctrl-w"
+        "key": "ctrl-w",
+        "when": "editorFocus"
     },
     {
         "command": "workbench.action.splitEditorDown",
@@ -203,5 +209,21 @@
         "command": "runCommands",
         "key": "enter",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceIsFolder && !inputFocus"
+    },
+    {
+        "args": {
+            "id": "hidegitigored",
+            "value": [
+                {
+                    "explorer.excludeGitIgnore": true
+                },
+                {
+                    "explorer.excludeGitIgnore": false
+                }
+            ]
+        },
+        "command": "toggle",
+        "key": "shift-h",
+        "when": "filesExplorerFocus"
     }
 ]
