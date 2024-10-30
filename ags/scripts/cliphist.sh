@@ -14,6 +14,11 @@ clear() {
     cliphist wipe
 }
 
+delete_by_id() {
+    id=$1
+    echo $id | cliphist delete
+}
+
 save_cache_file() {
     id=$1
 
@@ -35,6 +40,8 @@ if [[ "$1" == "--get" ]]; then
     get
 elif [[ "$1" == "--copy-by-id" ]]; then
     { copy_by_id "$2"; }
+elif [[ "$1" == "--delete-by-id" ]]; then
+    { delete_by_id "$2"; }
 elif [[ "$1" == "--save-by-id" ]]; then
     { save_cache_file "$2"; }
 elif [[ "$1" == "--clear-cache" ]]; then

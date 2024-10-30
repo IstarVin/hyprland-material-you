@@ -1,6 +1,6 @@
 {
-    "browser": "brave",
-    "editor": "code",
-    "filemanager": "nautilus",
-    "terminal": "alacritty"
+  "browser": "brave",
+  "editor": "code",
+  "filemanager": "nautilus",
+  "terminal": "alacritty"
 }

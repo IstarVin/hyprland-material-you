@@ -14,6 +14,9 @@ bindings = [
     { key = "V", mods = "Control", action = "Paste"},
 ]
 
+[env]
+TERM = "xterm-256color"
+
 [general]
 import = [
     "~/.cache/material/alacritty.toml"
