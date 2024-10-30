@@ -10,8 +10,8 @@
   },
   "breadcrumbs.enabled": true,
   "editor.cursorBlinking": "phase",
-  "editor.cursormoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 17,
+  "editor.cursormoothCaretAnimation": "on",
   "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDeclarations": "goto",
@@ -38,6 +38,7 @@
   "terminal.external.linuxExec": "alacritty",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
+  "git.terminalAuthentication": false,
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
