@@ -1,22 +1,71 @@
 {
-  "window.zoomLevel": 1,
-  "window.restoreWindows": "none",
-  "window.titleBarStyle": "custom",
-  "workbench.colorTheme": "Catppuccin Mocha",
-  "workbench.iconTheme": "material-icon-theme",
-  "svelte.enable-ts-plugin": true,
-  "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
-  "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.external.linuxExec": "alacritty",
-  "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "editor.formatOnSave": true,
-  "git.enableSmartCommit": true,
-  "editor.minimap.enabled": false,
   "[json]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "git.openRepositoryInParentFolders": "never"
+  "[jsonc]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "breadcrumbs.enabled": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursormoothCaretAnimation": "on",
+  "editor.cursorSurroundingLines": 17,
+  "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
+  "editor.formatOnSave": true,
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  // "editor.gotoLocation.multipleReferences": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.hover.enabled": true,
+  "editor.lightbulb.enabled": "off",
+  "editor.matchBrackets": "near",
+  "editor.minimap.enabled": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.overviewRulerBorder": false,
+  "editor.renderControlCharacters": false,
+  "editor.renderLineHighlight": "none",
+  "editor.renderWhitespace": "none",
+  "editor.selectionHighlight": false,
+  // "editor.stickyScroll.enabled": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  "problems.decorations.enabled": false,
+  "svelte.enable-ts-plugin": true,
+  "terminal.external.linuxExec": "alacritty",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
+  "vim.cursorStylePerMode.replace": "underline",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        ":"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ],
+      "silent": true
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "window.customMenuBarAltFocus": false,
+  "window.customTitleBarVisibility": "never",
+  "window.enableMenuBarMnemonics": false,
+  "window.experimentalControlOverlay": false,
+  "window.menuBarVisibility": "hidden",
+  "window.restoreWindows": "none",
+  "window.titleBarStyle": "native",
+  "window.zoomLevel": 1,
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.showTabs": "none",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  // "workbench.statusBar.visible": false,
+  "workbench.tips.enabled": false
 }
