@@ -38,7 +38,7 @@
   "terminal.external.linuxExec": "alacritty",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
-  "git.terminalAuthentication": false,
+  "git.terminalAuthentication": true,
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
