@@ -14,6 +14,8 @@ type ConfigType = {
     hide_media_button: boolean;
     workspaces_to_the_left: boolean;
     show_beta: boolean;
+    hide_cliphist_button: boolean;
+    messages_notifications_filter: string[];
 };
 
 export const default_config: ConfigType = {
@@ -28,6 +30,8 @@ export const default_config: ConfigType = {
     hide_media_button: false,
     workspaces_to_the_left: false,
     show_beta: false,
+    hide_cliphist_button: false,
+    messages_notifications_filter: []
 };
 
 Utils.exec(["mkdir", "-p", `${GLib.get_home_dir()}/.config/ags_config/`]);
@@ -41,11 +45,11 @@ class ConfigService extends Service {
         Service.register(
             this,
             {
-                "config-changed": ["jsobject"],
+                "config-changed": ["jsobject"]
             },
             {
-                config: ["jsobject", "rw"],
-            },
+                config: ["jsobject", "rw"]
+            }
         );
     }
 

@@ -5,6 +5,7 @@ import { SystemBox } from "./system.ts";
 let shown = Variable("Messages");
 import Gtk from "gi://Gtk?version=3.0";
 import { MaterialIcon } from "icons.ts";
+import config from "services/configuration.ts";
 
 type ButtonType = {
     page: string;
@@ -25,20 +26,20 @@ function Button({ page, label, icon }: ButtonType) {
                     child: Widget.Box({
                         orientation: Gtk.Orientation.VERTICAL,
                         hpack: "center",
-                        class_name: "container",
+                        class_name: "container"
                     }),
                     overlay: MaterialIcon(icon, "20px"),
-                    pass_through: true,
+                    pass_through: true
                 }),
                 Widget.Label({
                     label: label,
-                    class_name: "label",
-                }),
-            ],
+                    class_name: "label"
+                })
+            ]
         }),
         on_clicked: () => {
             shown.setValue(page);
-        },
+        }
     });
 }
 
@@ -49,17 +50,18 @@ export function Navigation() {
         "telegram",
         "ayugram",
         "whatsapp",
+        ...config.config.messages_notifications_filter
     ];
     let stack = Widget.Stack({
         children: {
             Messages: NotificationsBox({ include: messages_apps }),
             Notifications: NotificationsBox({ exclude: messages_apps }),
-            System: SystemBox(),
+            System: SystemBox()
         },
         transition: "crossfade",
         transitionDuration: 200,
         // @ts-expect-error
-        shown: shown.bind(),
+        shown: shown.bind()
     });
     const buttons = Widget.Box({
         class_name: "navigation",
@@ -68,29 +70,26 @@ export function Navigation() {
             Button({
                 page: "Messages",
                 label: "Messages",
-                icon: "chat",
+                icon: "chat"
             }),
             Button({
                 page: "Notifications",
                 label: "Notifs",
-                icon: "notifications",
+                icon: "notifications"
             }),
             Button({
                 page: "System",
                 label: "System",
-                icon: "info",
-            }),
+                icon: "info"
+            })
         ],
         setup: (self) => {
             self.hook(shown, () => {
                 for (const button of self.children) {
-                    button.toggleClassName(
-                        "active",
-                        button.attribute.page == shown.value,
-                    );
+                    button.toggleClassName("active", button.attribute.page == shown.value);
                 }
             });
-        },
+        }
     });
     return Widget.Box({
         vexpand: true,
@@ -106,6 +105,6 @@ export function Navigation() {
                     shown.setValue(key);
                 });
             }
-        },
+        }
     });
 }

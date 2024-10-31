@@ -7,10 +7,7 @@ import config from "services/configuration.ts";
 import { Binding } from "types/service";
 import { default_config } from "../../services/configuration";
 
-const ComboBoxText = Widget.subclass<
-    typeof Gtk.ComboBoxText,
-    Gtk.ComboBoxText.ConstructorProperties
->(Gtk.ComboBoxText);
+const ComboBoxText = Widget.subclass<typeof Gtk.ComboBoxText, Gtk.ComboBoxText.ConstructorProperties>(Gtk.ComboBoxText);
 
 const color_schemes = {
     "TonalSpot (Recommended)": "tonalSpot",
@@ -28,7 +25,7 @@ const color_schemes = {
         for (const key of keys) {
             yield { key, value: this[key] };
         }
-    },
+    }
 };
 
 export const update_scheme = async (scheme: string) => {
@@ -93,10 +90,7 @@ const reload_theme = async () => {
     let _color = color.value;
     let color_to_write = _color;
 
-    if (
-        _color.length > 0 && isNumeric(_color) && Number(_color) >= 0 &&
-        Number(_color) <= 360
-    ) {
+    if (_color.length > 0 && isNumeric(_color) && Number(_color) >= 0 && Number(_color) <= 360) {
         _color = hueToHex(Number(_color));
         color_to_write = `${color.value}`;
     }
@@ -110,10 +104,7 @@ const reload_theme = async () => {
             const settingsContent = await Utils.readFile(settings_file);
             const settings = JSON.parse(settingsContent);
             settings["custom-color"] = customColor;
-            await Utils.writeFile(
-                JSON.stringify(settings, null, 2),
-                settings_file,
-            );
+            await Utils.writeFile(JSON.stringify(settings, null, 2), settings_file);
         } catch (error) {
             print(`Failed to update custom-color in settings.json: ${error}`);
         }
@@ -122,7 +113,7 @@ const reload_theme = async () => {
     const Default = async () => {
         try {
             await Utils.execAsync(
-                `python -O ${color_generator} -w --color-scheme "${theme.value}" --scheme "${scheme.value}"`,
+                `python -O ${color_generator} -w --color-scheme "${theme.value}" --scheme "${scheme.value}"`
             );
             await update_settings_file("none");
         } catch (error) {
@@ -135,7 +126,7 @@ const reload_theme = async () => {
     if (_color !== "none" && _color.length > 6) {
         try {
             await Utils.execAsync(
-                `python -O ${color_generator} --color "${_color}" --color-scheme "${theme.value}" --scheme "${scheme.value}"`,
+                `python -O ${color_generator} --color "${_color}" --color-scheme "${theme.value}" --scheme "${scheme.value}"`
             );
             await update_settings_file(color_to_write);
         } catch (error) {
@@ -167,14 +158,14 @@ const DarkTheme = () =>
                         Widget.Label({
                             hpack: "start",
                             class_name: "title",
-                            label: "Dark theme",
-                        }),
+                            label: "Dark theme"
+                        })
                         // Widget.Label({
                         //     hpack: "start",
                         //     class_name: "description",
                         //     label: "Idk"
                         // })
-                    ],
+                    ]
                 }),
                 Widget.Switch({
                     vexpand: false,
@@ -183,15 +174,15 @@ const DarkTheme = () =>
                     on_activate: (self) => {
                         if (self.active != (theme.value.trim() == "dark")) {
                             Utils.execAsync(
-                                `${App.configDir}/scripts/dark-theme.sh --set ${self.state ? "dark" : "light"}`,
+                                `${App.configDir}/scripts/dark-theme.sh --set ${self.state ? "dark" : "light"}`
                             ).catch(print);
                             theme.setValue(self.state ? "dark" : "light");
                         }
                     },
-                    state: theme.bind().as((c) => c.trim() == "dark"),
-                }),
-            ],
-        }),
+                    state: theme.bind().as((c) => c.trim() == "dark")
+                })
+            ]
+        })
     });
 
 const ThemeColor = () =>
@@ -213,14 +204,14 @@ const ThemeColor = () =>
                         Widget.Label({
                             hpack: "start",
                             class_name: "title",
-                            label: "Color",
+                            label: "Color"
                         }),
                         Widget.Label({
                             hpack: "start",
                             class_name: "description",
-                            label: "Write HUE or #HEX in color",
-                        }),
-                    ],
+                            label: "Write HUE or #HEX in color"
+                        })
+                    ]
                 }),
                 Widget.Entry({
                     max_length: 7,
@@ -233,8 +224,7 @@ const ThemeColor = () =>
                     },
                     on_change: (self) => {
                         if (self.text!.length > 6) {
-                            self.css = `border: 2px solid; border-color: ${self
-                                .text!}`;
+                            self.css = `border: 2px solid; border-color: ${self.text!}`;
                         } else if (
                             self.text!.length > 0 &&
                             isNumeric(self.text!) &&
@@ -243,10 +233,10 @@ const ThemeColor = () =>
                         ) {
                             self.css = `border: 2px solid; border-color: ${hueToHex(Number(self.text))}`;
                         } else self.css = `border: 2px solid; border-color: transparent;`;
-                    },
-                }),
-            ],
-        }),
+                    }
+                })
+            ]
+        })
     });
 
 const ColorScheme = () =>
@@ -268,14 +258,14 @@ const ColorScheme = () =>
                         Widget.Label({
                             hpack: "start",
                             class_name: "title",
-                            label: "Scheme",
+                            label: "Scheme"
                         }),
                         Widget.Label({
                             hpack: "start",
                             class_name: "description",
-                            label: "Scheme that will be used for color generation",
-                        }),
-                    ],
+                            label: "Scheme that will be used for color generation"
+                        })
+                    ]
                 }),
                 ComboBoxText({
                     setup: (self: Gtk.ComboBoxText) => {
@@ -285,67 +275,66 @@ const ColorScheme = () =>
                         let selected: string | null;
                         self.connect("changed", () => {
                             selected = self.get_active_text();
-                            theme_settings.scheme.setValue(
-                                color_schemes[selected!],
-                            );
+                            theme_settings.scheme.setValue(color_schemes[selected!]);
                             update_scheme(color_schemes[selected!]);
                             reload_theme();
                         });
-                    },
-                }),
-            ],
-        }),
+                    }
+                })
+            ]
+        })
     });
 
 const SwitchRow = (
     on_activate: (...args: any) => void,
     state: boolean | Binding<any, any, boolean>,
     title: string,
-    description?: string,
-) => Widget.EventBox({
-    class_name: "row",
-    on_primary_click_release: (self) => {
-        self.child.children[1]!.activate();
-    },
-    child: Widget.Box({
+    description?: string
+) =>
+    Widget.EventBox({
         class_name: "row",
-        vpack: "start",
-        children: [
-            // @ts-expect-error
-            Widget.Box({
-                vertical: true,
-                hexpand: true,
-                vpack: "center",
-                children: [
-                    Widget.Label({
-                        hpack: "start",
-                        class_name: "title",
-                        label: title,
-                    }),
-                    description
-                        ? Widget.Label({
+        on_primary_click_release: (self) => {
+            self.child.children[1]!.activate();
+        },
+        child: Widget.Box({
+            class_name: "row",
+            vpack: "start",
+            children: [
+                // @ts-expect-error
+                Widget.Box({
+                    vertical: true,
+                    hexpand: true,
+                    vpack: "center",
+                    children: [
+                        Widget.Label({
                             hpack: "start",
-                            class_name: "description",
-                            label: description,
-                        })
-                        : undefined,
-                ],
-            }),
-            Widget.Switch({
-                vexpand: false,
-                vpack: "center",
-                hpack: "end",
-                on_activate: on_activate,
-                state: state,
-            }),
-        ],
-    }),
-});
+                            class_name: "title",
+                            label: title
+                        }),
+                        description
+                            ? Widget.Label({
+                                  hpack: "start",
+                                  class_name: "description",
+                                  label: description
+                              })
+                            : undefined
+                    ]
+                }),
+                Widget.Switch({
+                    vexpand: false,
+                    vpack: "center",
+                    hpack: "end",
+                    on_activate: on_activate,
+                    state: state
+                })
+            ]
+        })
+    });
 
 function ToggleConfigVar(name: keyof typeof default_config) {
     config.config = {
         ...config.config,
-        [name]: !config.config[name],
+        [name]: !config.config[name]
     };
 }
 
@@ -360,47 +349,52 @@ export function Appearance() {
             SwitchRow(
                 () => ToggleConfigVar("always_show_battery"),
                 config.config.always_show_battery,
-                "Always show battery",
+                "Always show battery"
             ),
             SwitchRow(
                 () => ToggleConfigVar("show_battery_percent"),
                 config.config.show_battery_percent,
-                "Show battery percent",
+                "Show battery percent"
             ),
             Widget.Separator(),
             SwitchRow(
                 () => ToggleConfigVar("hide_empty_workspaces"),
                 config.config.hide_empty_workspaces,
-                "Hide empty workspaces",
+                "Hide empty workspaces"
             ),
             SwitchRow(
                 () => ToggleConfigVar("workspaces_to_the_left"),
                 config.config.workspaces_to_the_left,
                 "Move workspaces to the left",
-                "Requires ags restart",
+                "Requires ags restart"
             ),
             Widget.Separator(),
             SwitchRow(
                 () => ToggleConfigVar("show_taskbar"),
                 config.config.show_taskbar,
                 "Show taskbar",
-                "Requires ags restart",
+                "Requires ags restart"
             ),
             SwitchRow(
                 () => ToggleConfigVar("hide_applauncher_button"),
                 config.config.hide_applauncher_button,
-                "Hide applauncher button",
+                "Hide applauncher button"
             ),
             SwitchRow(
                 () => ToggleConfigVar("hide_media_button"),
                 config.config.hide_media_button,
-                "Always hide media button",
+                "Always hide media button"
             ),
-        ],
+            SwitchRow(
+                () => ToggleConfigVar("hide_cliphist_button"),
+                config.config.hide_cliphist_button,
+                "Hide clipboard history button on bar"
+            )
+        ]
     });
     return Widget.Scrollable({
         hscroll: "never",
         child: box,
-        vexpand: true,
+        vexpand: true
     });
 }

@@ -35,7 +35,7 @@ const MATERIAL_SYMBOL_SIGNAL_STRENGTH = {
     "network-wireless-signal-good-symbolic": "network_wifi_3_bar",
     "network-wireless-signal-ok-symbolic": "network_wifi_2_bar",
     "network-wireless-signal-weak-symbolic": "network_wifi_1_bar",
-    "network-wireless-signal-none-symbolic": "signal_wifi_0_bar",
+    "network-wireless-signal-none-symbolic": "signal_wifi_0_bar"
 };
 
 const time = Variable("");
@@ -65,9 +65,7 @@ function getIconNameFromClass(windowClass: string) {
     let formattedClass = windowClass.replace(/\s+/g, "-").toLowerCase();
     let homeDir = GLib.get_home_dir();
     let systemDataDirs = GLib.get_system_data_dirs().map((dir) => dir + "/applications");
-    let dataDirs = systemDataDirs.concat([
-        homeDir + "/.local/share/applications",
-    ]);
+    let dataDirs = systemDataDirs.concat([homeDir + "/.local/share/applications"]);
     let icon: string | undefined;
 
     for (let dir of dataDirs) {
@@ -78,7 +76,7 @@ function getIconNameFromClass(windowClass: string) {
             enumerator = applicationsGFile.enumerate_children(
                 "standard::name,standard::type",
                 Gio.FileQueryInfoFlags.NONE,
-                null,
+                null
             );
         } catch (e) {
             continue;
@@ -88,12 +86,8 @@ function getIconNameFromClass(windowClass: string) {
         while ((fileInfo = enumerator.next_file(null)) !== null) {
             let desktopFile = fileInfo.get_name();
             if (desktopFile.endsWith(".desktop")) {
-                let fileContents = GLib.file_get_contents(
-                    dir + "/" + desktopFile,
-                );
-                let matches = /Icon=(\S+)/.exec(
-                    decoder.decode(fileContents[1]),
-                );
+                let fileContents = GLib.file_get_contents(dir + "/" + desktopFile);
+                let matches = /Icon=(\S+)/.exec(decoder.decode(fileContents[1]));
                 if (matches && matches[1]) {
                     if (desktopFile.toLowerCase().includes(formattedClass)) {
                         icon = matches[1];
@@ -112,10 +106,7 @@ function getIconNameFromClass(windowClass: string) {
 const dispatch = (ws: string) => hyprland.messageAsync(`dispatch workspace ${ws}`).catch(print);
 
 function Workspaces() {
-    let workspace_buttons = new Map<
-        Number,
-        ReturnType<typeof createWorkspaceButton>
-    >();
+    let workspace_buttons = new Map<Number, ReturnType<typeof createWorkspaceButton>>();
     const workspace_buttons_array: VariableType<Button<any, any>[] | any> = Variable([]);
 
     function createWorkspaceButton(id: Number) {
@@ -123,7 +114,7 @@ function Workspaces() {
             on_clicked: () => dispatch(`${id}`),
             child: Widget.Label(`${id}`),
             attribute: { id: id, map: false },
-            class_name: "workspace",
+            class_name: "workspace"
         });
     }
 
@@ -131,9 +122,7 @@ function Workspaces() {
         for (let i = 1; i <= 10; i++) {
             workspace_buttons.set(i, createWorkspaceButton(i));
         }
-        workspace_buttons_array.setValue(
-            Array.from(workspace_buttons.values()),
-        );
+        workspace_buttons_array.setValue(Array.from(workspace_buttons.values()));
     }
 
     function update() {
@@ -156,10 +145,7 @@ function Workspaces() {
 
     function activeWorkspace() {
         workspace_buttons.forEach((workspace, key) => {
-            workspace.toggleClassName(
-                "active",
-                workspace.attribute.id == hyprland.active.workspace.id,
-            );
+            workspace.toggleClassName("active", workspace.attribute.id == hyprland.active.workspace.id);
         });
     }
 
@@ -182,8 +168,8 @@ function Workspaces() {
         hpack: "center",
         child: Widget.Box({
             children: workspace_buttons_array.bind(),
-            class_name: "workspaces",
-        }),
+            class_name: "workspaces"
+        })
     });
 }
 
@@ -195,17 +181,17 @@ function Clock() {
             children: [
                 Widget.Label({
                     class_name: "time",
-                    label: time.bind(),
+                    label: time.bind()
                 }),
                 Widget.Label({
                     class_name: "date",
-                    label: date.bind(),
-                }),
-            ],
+                    label: date.bind()
+                })
+            ]
         }),
         on_clicked: (self) => {
             App.toggleWindow("calendar");
-        },
+        }
     });
 }
 
@@ -215,20 +201,14 @@ function NetworkMeter() {
             Widget.Box({
                 class_name: "",
                 visible: true,
-                children: [
-                    MaterialIcon("download_2", "16px"),
-                    Widget.Label({}),
-                ],
+                children: [MaterialIcon("download_2", "16px"), Widget.Label({})]
             }),
             Widget.Box({
                 class_name: "",
                 visible: true,
-                children: [
-                    MaterialIcon("upload_2", "16px"),
-                    Widget.Label({}),
-                ],
-            }),
-        ],
+                children: [MaterialIcon("upload_2", "16px"), Widget.Label({})]
+            })
+        ]
     });
 }
 
@@ -244,7 +224,7 @@ const battery_icons = {
         30: "battery_charging_30",
         20: "battery_charging_20",
         10: "battery_charging_20",
-        0: "battery_charging_20",
+        0: "battery_charging_20"
     },
     100: "battery_full",
     90: "battery_6_bar",
@@ -256,7 +236,7 @@ const battery_icons = {
     30: "battery_2_bar",
     20: "battery_1_bar",
     10: "battery_1_bar",
-    0: "battery_alert",
+    0: "battery_alert"
 };
 
 function getClosestBatteryLevel(level: number, charging: boolean = false) {
@@ -277,28 +257,21 @@ function BatteryLabel() {
         class_name: "battery",
         visible: false,
         children: [
-            MaterialIcon(
-                getClosestBatteryLevel(battery.percent, battery.charging),
-                "16px",
-            ),
+            MaterialIcon(getClosestBatteryLevel(battery.percent, battery.charging), "16px"),
             Widget.Label({
                 label: battery.bind("percent").as((p) => `${p > 0 ? p : 0}%`),
-                visible: config.bind("config").as((config) => config.show_battery_percent),
+                visible: config.bind("config").as((config) => config.show_battery_percent)
             }),
             Widget.Label({
                 label: battery.bind("energy_rate").as((energy_rate) => `  ${energy_rate.toFixed(2)}W`),
-                visible: battery.bind("energy_rate").as((energy_rate) => energy_rate != 0),
-            }),
+                visible: battery.bind("energy_rate").as((energy_rate) => energy_rate != 0)
+            })
         ],
         tooltip_text: battery.bind("percent").as((p) => `Battery: ${p > 0 ? p : 0}%`),
         setup: (self) => {
             self.hook(battery, () => {
-                self.children[0].label = getClosestBatteryLevel(
-                    battery.percent,
-                    battery.charging,
-                );
-                self.visible = (battery.percent < 100 && battery.available) ||
-                    config.config.always_show_battery;
+                self.children[0].label = getClosestBatteryLevel(battery.percent, battery.charging);
+                self.visible = (battery.percent < 100 && battery.available) || config.config.always_show_battery;
                 self.toggleClassName("critical", battery.percent < 15);
             });
             self.hook(config, () => {
@@ -308,7 +281,7 @@ function BatteryLabel() {
                     self.visible = battery.percent < 100 && battery.available;
                 }
             });
-        },
+        }
     });
 }
 
@@ -322,15 +295,12 @@ function SysTray() {
                 // @ts-expect-error
                 self.children = items.map((item) => {
                     if (!item.id) return undefined;
-                    if (
-                        item.id.trim() != "nm-applet" &&
-                        item.id.trim() != "blueman"
-                    ) {
+                    if (item.id.trim() != "nm-applet" && item.id.trim() != "blueman") {
                         return Widget.Button({
-                            child: Widget.Icon({ icon: item.bind("icon") }),
+                            child: Widget.Icon({ icon: item.bind("icon"), size: 16 }),
                             on_primary_click_release: (_, event) => item.activate(event),
                             on_secondary_click_release: (_, event) => item.openMenu(event),
-                            tooltip_markup: item.bind("tooltip_markup"),
+                            tooltip_markup: item.bind("tooltip_markup")
                         });
                     } else {
                         return undefined;
@@ -339,7 +309,7 @@ function SysTray() {
                 if (self.children.length > 0) self.visible = true;
                 else self.visible = false;
             });
-        },
+        }
     });
 }
 
@@ -352,13 +322,11 @@ function AppLauncher() {
         child: MaterialIcon("search"),
         setup: (self) => {
             self.hook(config, () => {
-                if (
-                    config.config.hide_applauncher_button != !self.is_visible()
-                ) {
+                if (config.config.hide_applauncher_button != !self.is_visible()) {
                     self.set_visible(!config.config.hide_applauncher_button);
                 }
             });
-        },
+        }
     });
 
     return button;
@@ -371,7 +339,7 @@ function OpenSideLeft() {
         on_clicked: () => {
             App.toggleWindow("sideleft");
         },
-        child: MaterialIcon("dock_to_right"),
+        child: MaterialIcon("dock_to_right")
     });
 
     return button;
@@ -392,15 +360,14 @@ function Network() {
             }
         },
         child: MaterialIcon("signal_wifi_off", "16px"),
-        tooltip_text: "Disabled",
+        tooltip_text: "Disabled"
     }).hook(network, (self) => {
         if (network.wired.internet === "connected") {
             self.tooltip_text = "Wired Connection";
             self.child.label = "settings_ethernet";
         } else if (network.wifi.enabled) {
             self.tooltip_text = network.wifi.ssid || "Unknown";
-            self.child.label = MATERIAL_SYMBOL_SIGNAL_STRENGTH[network.wifi.icon_name] ||
-                "signal_wifi_off";
+            self.child.label = MATERIAL_SYMBOL_SIGNAL_STRENGTH[network.wifi.icon_name] || "signal_wifi_off";
         } else {
             self.tooltip_text = "Disabled";
             self.child.label = "signal_wifi_off";
@@ -422,9 +389,11 @@ function Bluetooth() {
                 Utils.execAsync("blueman-manager").catch(print);
             }
         },
-        child: MaterialIcon("bluetooth_disabled", "16px"),
+        child: MaterialIcon("bluetooth_disabled", "16px")
     }).hook(bluetooth, (self) => {
-        if (bluetooth.enabled) {
+        if (bluetooth.connected_devices.length > 0) {
+            self.child.label = "bluetooth_connected";
+        } else if (bluetooth.enabled) {
             self.child.label = "bluetooth";
         } else {
             self.child.label = "bluetooth_disabled";
@@ -443,16 +412,11 @@ function MediaPlayer() {
             Utils.execAsync(["playerctl", "play-pause"]).catch(print);
         },
         on_middle_click_release: () => {
-            Utils.execAsync([
-                "hyprctl",
-                "dispatch",
-                "togglespecialworkspace",
-                "music",
-            ]);
+            Utils.execAsync(["hyprctl", "dispatch", "togglespecialworkspace", "music"]);
         },
         child: MaterialIcon("play_circle"),
         visible: false,
-        tooltip_text: "Unknown",
+        tooltip_text: "Unknown"
     })
         .hook(mpris, (self) => {
             if (mpris.players.length > 0) {
@@ -482,7 +446,7 @@ function KeyboardLayout() {
         class_name: "keyboard",
         visible: keyboard_layout.bind().as((c) => c != "none"),
         // visible: false,
-        label: keyboard_layout.bind(),
+        label: keyboard_layout.bind()
     });
     return widget;
 }
@@ -497,16 +461,13 @@ function OpenSideBar() {
         on_secondary_click_release: () => {
             OpenSettings();
         },
-        child: MaterialIcon("dock_to_left"),
+        child: MaterialIcon("dock_to_left")
     });
 
     return button;
 }
 
-const focus = ({ address }) =>
-    Utils.execAsync(`hyprctl dispatch focuswindow address:${address}`).catch(
-        print,
-    );
+const focus = ({ address }) => Utils.execAsync(`hyprctl dispatch focuswindow address:${address}`).catch(print);
 
 function TaskBar() {
     if (!config.config.show_taskbar) {
@@ -534,11 +495,12 @@ function TaskBar() {
             } else {
                 let icon: string | undefined;
                 if (client.class === "com.github.Aylur.ags") {
-                    icon = client.initialTitle === "Settings"
-                        ? "emblem-system-symbolic"
-                        : client.initialTitle === "Emoji Picker"
-                        ? "face-smile-symbolic"
-                        : undefined;
+                    icon =
+                        client.initialTitle === "Settings"
+                            ? "emblem-system-symbolic"
+                            : client.initialTitle === "Emoji Picker"
+                              ? "face-smile-symbolic"
+                              : undefined;
                 } else {
                     icon = getIconNameFromClass(client.class);
                 }
@@ -547,11 +509,11 @@ function TaskBar() {
                     attribute: {
                         client: client,
                         workspace: client.workspace,
-                        pid: client.pid,
+                        pid: client.pid
                     },
-                    child: Widget.Icon({ icon }),
+                    child: Widget.Icon({ icon, size: 16 }),
                     tooltip_markup: client.title,
-                    on_clicked: () => focus(client),
+                    on_clicked: () => focus(client)
                 });
                 globalWidgets.push(widget);
             }
@@ -567,11 +529,11 @@ function TaskBar() {
                 self.children = Clients(hyprland.clients);
                 self.visible = self.children.length > 0;
             });
-        },
+        }
     });
 }
 
-function volumeIndicator() {
+function VolumeIndicator() {
     return Widget.EventBox({
         on_scroll_up: () => (audio.speaker.volume += 0.01),
         on_scroll_down: () => (audio.speaker.volume -= 0.01),
@@ -580,30 +542,27 @@ function volumeIndicator() {
             on_primary_click_release: () => App.toggleWindow("audio"),
             on_middle_click_release: () => (audio.speaker.is_muted = !audio.speaker.is_muted),
             on_secondary_click_release: () => Utils.execAsync("pavucontrol -t 3").catch(print),
-            child: MaterialIcon("volume_off", "16px").hook(
-                audio.speaker,
-                (self) => {
-                    const vol = audio.speaker.volume * 100;
-                    const icon = [
-                        [101, "sound_detection_loud_sound"],
-                        [67, "volume_up"],
-                        [34, "volume_down"],
-                        [1, "volume_mute"],
-                        [0, "volume_off"],
-                    ].find(([threshold]) => Number(threshold) <= vol)?.[1];
-                    if (audio.speaker.is_muted) self.label = "volume_off";
-                    else self.label = String(icon!);
-                    self.tooltip_text = `Volume ${Math.floor(vol)}%`;
-                },
-            ),
-        }),
+            child: MaterialIcon("volume_off", "16px").hook(audio.speaker, (self) => {
+                const vol = audio.speaker.volume * 100;
+                const icon = [
+                    [101, "sound_detection_loud_sound"],
+                    [67, "volume_up"],
+                    [34, "volume_down"],
+                    [1, "volume_mute"],
+                    [0, "volume_off"]
+                ].find(([threshold]) => Number(threshold) <= vol)?.[1];
+                if (audio.speaker.is_muted) self.label = "volume_off";
+                else self.label = String(icon!);
+                self.tooltip_text = `Volume ${Math.floor(vol)}%`;
+            })
+        })
     });
 }
 
 function idleInhibitor() {
     return Widget.Button({
         child: MaterialIcon("coffee", "16px"),
-        on_clicked: toggleIdleInhibitor,
+        on_clicked: toggleIdleInhibitor
     }).hook(idle_inhibitor, (self) => {
         self.visible = idle_inhibitor.value;
     });
@@ -621,40 +580,44 @@ function powerProfile() {
         on_secondary_click_release: () => {
             powerProfiles.active_profile = "balanced";
         },
-        child: MaterialIcon("data_saver_on", "16px").hook(
-            powerProfiles,
-            (self) => {
-                switch (powerProfiles.active_profile) {
-                    case "performance":
-                        self.label = "speed";
-                        self.tooltip_text = "Performance";
-                        break;
-                    case "balanced":
-                        self.label = "token";
-                        self.tooltip_text = "Balanced";
-                        break;
-                    case "power-saver":
-                        self.label = "data_saver_on";
-                        self.tooltip_text = "Power Saver";
-                        break;
-                    default:
-                }
-            },
-        ),
+        child: MaterialIcon("data_saver_on", "16px").hook(powerProfiles, (self) => {
+            switch (powerProfiles.active_profile) {
+                case "performance":
+                    self.label = "speed";
+                    self.tooltip_text = "Performance";
+                    break;
+                case "balanced":
+                    self.label = "token";
+                    self.tooltip_text = "Balanced";
+                    break;
+                case "power-saver":
+                    self.label = "data_saver_on";
+                    self.tooltip_text = "Power Saver";
+                    break;
+                default:
+            }
+        })
     });
 }
+
+const OpenClipHist = () =>
+    Widget.Button({
+        class_name: "bar_cliphist",
+        on_clicked: (self) => App.toggleWindow("cliphist"),
+        child: MaterialIcon("content_paste", "16px"),
+        visible: !config.config.hide_cliphist_button,
+        setup: (self) => {
+            self.hook(config, () => {
+                self.set_visible(!config.config.hide_cliphist_button);
+            });
+        }
+    });
 
 const Applets = () =>
     Widget.Box({
         class_name: "bar_applets",
         spacing: 5,
-        children: [
-            idleInhibitor(),
-            powerProfile(),
-            volumeIndicator(),
-            Bluetooth(),
-            Network(),
-        ],
+        children: [idleInhibitor(), powerProfile(), VolumeIndicator(), Bluetooth(), Network(), OpenClipHist()]
     });
 
 const Dot = () =>
@@ -662,7 +625,7 @@ const Dot = () =>
         class_name: "dot",
         use_markup: true,
         label: "·",
-        css: "font-weight: 900;",
+        css: "font-weight: 900;"
     });
 
 function Left() {
@@ -674,7 +637,7 @@ function Left() {
         class_name: "modules_left",
         hpack: "start",
         spacing: 8,
-        children: [AppLauncher(), MediaPlayer(), workspaces, TaskBar()], //, OpenSideLeft()
+        children: [AppLauncher(), MediaPlayer(), workspaces, TaskBar()] //, OpenSideLeft()
     });
 }
 
@@ -686,7 +649,7 @@ function Center() {
         class_name: "modules_center",
         hpack: "center",
         spacing: 8,
-        children: [workspaces],
+        children: [workspaces]
     });
 }
 
@@ -696,13 +659,7 @@ function Right() {
         class_name: "modules_right",
         hpack: "end",
         spacing: 8,
-        children: [
-            BatteryLabel(),
-            SysTray(),
-            Applets(),
-            Clock(),
-            OpenSideBar(),
-        ],
+        children: [BatteryLabel(), SysTray(), Applets(), Clock(), OpenSideBar()]
         // KeyboardLayout(),
     });
 }
@@ -717,8 +674,8 @@ export const Bar = async (monitor = 0) => {
         child: Widget.CenterBox({
             start_widget: Left(),
             center_widget: Center(),
-            end_widget: Right(),
-        }),
+            end_widget: Right()
+        })
     });
 };
 
@@ -732,7 +689,7 @@ export const BarCornerTopLeft = (monitor = 0) =>
         exclusivity: "normal",
         visible: true,
         child: RoundedCorner("top_left", { className: "corner" }),
-        setup: enable_click_through,
+        setup: enable_click_through
     });
 
 export const BarCornerTopRight = (monitor = 0) =>
@@ -745,5 +702,5 @@ export const BarCornerTopRight = (monitor = 0) =>
         exclusivity: "normal",
         visible: true,
         child: RoundedCorner("top_right", { className: "corner" }),
-        setup: enable_click_through,
+        setup: enable_click_through
     });
