@@ -2,16 +2,7 @@
 
 import { Binding } from "types/service";
 const GLib = imports.gi.GLib;
-import {
-  amount_of_ram,
-  cpu_cores,
-  cpu_name,
-  cur_uptime,
-  current_os,
-  gpu_name,
-  hostname,
-  kernel_name,
-} from "variables";
+import { amount_of_ram, cpu_cores, cpu_name, cur_uptime, current_os, gpu_name, hostname, kernel_name } from "variables";
 
 type StringOrBinding = string | Binding<any, any, string> | null;
 
@@ -22,64 +13,63 @@ const current_de = GLib.getenv("DESKTOP_SESSION");
 const author = "koeqaife";
 
 const Row = (
-  title: StringOrBinding,
-  description: StringOrBinding,
-  on_primary_click: any = empty_func,
-  on_secondary_click: any = empty_func,
-) =>
-  Widget.EventBox({
+    title: StringOrBinding,
+    description: StringOrBinding,
+    on_primary_click: any = empty_func,
+    on_secondary_click: any = empty_func,
+) => Widget.EventBox({
     class_name: "row",
     on_primary_click_release: on_primary_click,
     on_secondary_click_release: on_secondary_click,
     child: Widget.Box({
-      class_name: "row",
-      vpack: "start",
-      children: [
-        Widget.Box({
-          vertical: true,
-          hexpand: true,
-          vpack: "center",
-          hpack: "start",
-          children: [
-            Widget.Label({
-              hpack: "start",
-              class_name: "title",
-              label: title,
+        class_name: "row",
+        vpack: "start",
+        children: [
+            Widget.Box({
+                vertical: true,
+                hexpand: true,
+                vpack: "center",
+                hpack: "start",
+                children: [
+                    Widget.Label({
+                        hpack: "start",
+                        class_name: "title",
+                        label: title,
+                    }),
+                    Widget.Label({
+                        hpack: "start",
+                        class_name: "description",
+                        label: description,
+                    }),
+                ],
             }),
-            Widget.Label({
-              hpack: "start",
-              class_name: "description",
-              label: description,
-            }),
-          ],
-        }),
-      ],
+        ],
     }),
-  });
+});
 
 export function Info() {
-  const box = Widget.Box({
-    vertical: true,
-    children: [
-      Row("Dotfiles", "Material You"),
-      Row("Author", author),
-      Row("Repo", repo_link, () => {
-        Utils.execAsync(`xdg-open "${repo_link}"`).catch(print);
-      }),
-      Widget.Separator(),
-      Row("DE", current_de!),
-      Row("OS", current_os),
-      Row("Kernel", kernel_name),
-      Row("Uptime", cur_uptime.bind()),
-      Row("CPU", `${cpu_name} (${cpu_cores} Cores)`),
-      Row("GPU", `${gpu_name}`),
-      Row("Ram", amount_of_ram),
-      Row("Hostname", hostname),
-    ],
-  });
-  return Widget.Scrollable({
-    hscroll: "never",
-    child: box,
-    vexpand: true,
-  });
+    const box = Widget.Box({
+        vertical: true,
+        children: [
+            Row("Dotfiles", "Material You"),
+            Row("Author", author),
+            Row("Repo", repo_link, () => {
+                Utils.execAsync(`xdg-open "${repo_link}"`).catch(print);
+            }),
+            Widget.Separator(),
+            Row("DE", current_de!),
+            Row("OS", current_os),
+            Row("Kernel", kernel_name),
+            Row("Uptime", cur_uptime.bind()),
+            Row("CPU", `${cpu_name} (${cpu_cores} Cores)`),
+            Row("GPU", `${gpu_name}`),
+            Row("Ram", amount_of_ram),
+            Row("Hostname", hostname),
+        ],
+    });
+    return Widget.Scrollable({
+        hscroll: "never",
+        child: box,
+        vexpand: true,
+    });
 }

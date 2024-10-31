@@ -32,7 +32,7 @@
             ]
         },
         "command": "toggle",
-        "key": "ctrl-shift-q",
+        "key": "ctrl-shift-q"
     },
     //Navigating
     {
@@ -109,7 +109,7 @@
     },
     {
         "command": "workbench.action.toggleSidebarVisibility",
-        "key": "ctrl-shift-c",
+        "key": "ctrl-shift-c"
     },
     {
         "command": "workbench.action.toggleSidebarVisibility",
@@ -268,7 +268,7 @@
     {
         "args": {
             "commands": [
-                "explorer.openAndPassFocus",
+                "explorer.openAndPassFocus"
                 // "workbench.action.toggleSidebarVisibility"
             ]
         },
@@ -300,7 +300,7 @@
         "args": {
             "commands": [
                 "workbench.action.chat.openEditSession"
-            ],
+            ]
         }
     },
     {
@@ -317,5 +317,5 @@
         "key": "ctrl+shift+z",
         "command": "workbench.action.toggleZenMode",
         "when": "!isAuxiliaryWindowFocusedContext"
-    },
+    }
 ]

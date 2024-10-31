@@ -12,66 +12,66 @@ const reboot_command = `${scripts_dir}/reboot.sh`;
 const suspend_command = `${scripts_dir}/suspend.sh`;
 
 function Button({ icon, command, tooltip, ...props }) {
-  let clickCount = 0;
-  const button = Widget.Button({
-    tooltip_text: tooltip,
-    child: MaterialIcon(icon, "20px"),
-    class_name: "outline_button",
-    on_clicked: (self) => {
-      clickCount++;
-      if (clickCount === 1) {
-        self.toggleClassName();
-      } else if (clickCount === 2) {
-        Utils.execAsync(command).catch(print);
+    let clickCount = 0;
+    const button = Widget.Button({
+        tooltip_text: tooltip,
+        child: MaterialIcon(icon, "20px"),
+        class_name: "outline_button",
+        on_clicked: (self) => {
+            clickCount++;
+            if (clickCount === 1) {
+                self.toggleClassName();
+            } else if (clickCount === 2) {
+                Utils.execAsync(command).catch(print);
+                clickCount = 0;
+            }
+        },
+        ...props,
+    });
+
+    button.connect("focus-out-event", () => {
         clickCount = 0;
-      }
-    },
-    ...props,
-  });
+    });
 
-  button.connect("focus-out-event", () => {
-    clickCount = 0;
-  });
-
-  return button;
+    return button;
 }
 
 export function Buttons() {
-  return Widget.Box({
-    class_name: "sidebar_buttons",
-    hexpand: true,
-    spacing: 5,
-    children: [
-      Button({
-        icon: "lock",
-        command: lock_command,
-        tooltip: "Lock",
+    return Widget.Box({
+        class_name: "sidebar_buttons",
         hexpand: true,
-      }),
-      Button({
-        icon: "clear_night",
-        command: suspend_command,
-        tooltip: "Suspend",
-        hexpand: true,
-      }),
-      Button({
-        icon: "logout",
-        command: logout_command,
-        tooltip: "Logout",
-        hexpand: true,
-      }),
-      Button({
-        icon: "restart_alt",
-        command: reboot_command,
-        tooltip: "Reboot",
-        hexpand: true,
-      }),
-      Button({
-        icon: "power_settings_new",
-        command: shutdown_command,
-        tooltip: "Shutdown",
-        hexpand: true,
-      }),
-    ],
-  });
+        spacing: 5,
+        children: [
+            Button({
+                icon: "lock",
+                command: lock_command,
+                tooltip: "Lock",
+                hexpand: true,
+            }),
+            Button({
+                icon: "clear_night",
+                command: suspend_command,
+                tooltip: "Suspend",
+                hexpand: true,
+            }),
+            Button({
+                icon: "logout",
+                command: logout_command,
+                tooltip: "Logout",
+                hexpand: true,
+            }),
+            Button({
+                icon: "restart_alt",
+                command: reboot_command,
+                tooltip: "Reboot",
+                hexpand: true,
+            }),
+            Button({
+                icon: "power_settings_new",
+                command: shutdown_command,
+                tooltip: "Shutdown",
+                hexpand: true,
+            }),
+        ],
+    });
 }

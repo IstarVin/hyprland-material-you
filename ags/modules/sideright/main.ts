@@ -6,12 +6,12 @@ import { SideBar } from "./sidebar.ts";
 export const WINDOW_NAME = "sidebar";
 
 export const sideright = popupwindow({
-  name: WINDOW_NAME,
+    name: WINDOW_NAME,
 
-  class_name: "sidebar",
-  visible: false,
-  keymode: "on-demand",
-  child: SideBar(),
-  anchor: ["top", "right", "bottom"],
-  css: "min-width: 443px;",
+    class_name: "sidebar",
+    visible: false,
+    keymode: "on-demand",
+    child: SideBar(),
+    anchor: ["top", "right", "bottom"],
+    css: "min-width: 443px;",
 });
