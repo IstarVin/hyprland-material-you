@@ -22,6 +22,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -46,10 +47,12 @@ zinit cdreplay -q
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
-#bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^o' autosuggest-accept
+function zvm_after_init() {
+    bindkey '^o' autosuggest-accept
+}
+#bindkey -v
+#bindkey '^p' history-search-backward
+#bindkey '^n' history-search-forward
 #bindkey '^[w' kill-region
 
 # History

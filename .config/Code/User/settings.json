@@ -3,19 +3,24 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "breadcrumbs.enabled": false,
   "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 17,
-  "editor.cursormoothCaretAnimation": "on",
   "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDeclarations": "goto",
-  // "editor.gotoLocation.multipleReferences": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleImplementations": "goto",
   "editor.gotoLocation.multipleTypeDefinitions": "goto",
@@ -30,16 +35,47 @@
   "editor.renderLineHighlight": "none",
   "editor.renderWhitespace": "none",
   "editor.selectionHighlight": false,
+  "editor.smoothScrolling": true,
   "explorer.excludeGitIgnore": true,
-  // "editor.stickyScroll.enabled": false,
+  "explorer.incrementalNaming": "smart",
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": false,
+    "markdown": false,
+    "plaintext": false,
+    "scminput": false
+  },
+  "material-icon-theme.hidesExplorerArrows": true,
   "problems.decorations.enabled": false,
   "svelte.enable-ts-plugin": true,
+  "terminal.explorerKind": "external",
   "terminal.external.linuxExec": "alacritty",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
-  // "git.terminalAuthentication": true,
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "icon": "terminal-bash",
+      "path": "bash"
+    },
+    "fish": {
+      "path": "fish"
+    },
+    "pwsh": {
+      "icon": "terminal-powershell",
+      "path": "pwsh"
+    },
+    "tmux": {
+      "icon": "terminal-tmux",
+      "path": "tmux"
+    },
+    "zsh": {
+      "path": "/bin/zsh"
+    }
+  },
+  "terminal.integrated.shellIntegration.history": 1000,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.stickyScroll.enabled": true,
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
@@ -58,22 +94,21 @@
   "window.customTitleBarVisibility": "never",
   "window.enableMenuBarMnemonics": false,
   "window.experimentalControlOverlay": false,
+  "window.menuBarVisibility": "hidden",
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1,
   "workbench.activityBar.location": "hidden",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  // "workbench.editor.showTabs": "none",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.startupEditor": "none",
-  // "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
   "zenMode.centerLayout": false,
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
   "zenMode.showTabs": "none",
-  "window.menuBarVisibility": "toggle"
+  "vim.smartRelativeLine": true
 }

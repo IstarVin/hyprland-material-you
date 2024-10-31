@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
+useCode=0
+args=$@
+
+if [[ "$@" == *"--code"* ]]; then
+    useCode=1
+    args=($(printf "%s\n" "$@" | grep -v -- '--code'))
+    echo $args
+fi
+if [[ -n "$args" ]]; then
+    selected=$args
 else
     paths=$(find ~/Projects/ ~/Projects/deno-prac/ -mindepth 1 -maxdepth 1 -type d)
     paths+=$(printf "\n%s" "/home/aj/dotfiles")
@@ -9,6 +17,11 @@ else
 fi
 
 if [[ -z $selected ]]; then
+    exit 0
+fi
+
+if [[ $useCode -eq 1 ]]; then
+    code "$selected"
     exit 0
 fi
 

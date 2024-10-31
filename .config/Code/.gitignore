@@ -1,0 +1,31 @@
+.org*
+Crashpad
+CachedData
+Cache
+Local Storage
+blob_storage
+Shared Dictionary
+Code Cache
+Dictionaries
+Backups
+logs
+Trust Tokens
+Trust Tokens-journal
+GPUCache
+DawnWebGPUCache
+DawnGraphiteCache
+CachedProfilesData
+languagepacks.json
+machineid
+WebStorage
+databases
+Service Worker
+Cookies
+Cookies-journal
+CachedExtensionVSIXs
+SharedStorage*
+Session Storage
+Network Persistent State
+code.lock
+Preferences
+TransportSecurity

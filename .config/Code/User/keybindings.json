@@ -1,8 +1,14 @@
 [
     //General
     {
-        "command": "workbench.action.toggleZenMode",
-        "key": "ctrl-shift-z"
+        "command": "editor.action.scrollDownHover",
+        "key": "j",
+        "when": "editorHoverFocused"
+    },
+    {
+        "command": "editor.action.scrollUpHover",
+        "key": "k",
+        "when": "editorHoverFocused"
     },
     {
         "command": "workbench.action.openGlobalKeybindings",
@@ -14,8 +20,19 @@
         "when": "inKeybindings"
     },
     {
-        "command": "workbench.action.toggleMenuBar",
-        "key": "ctrl-shift-q"
+        "args": {
+            "id": "toggleMenuBar",
+            "value": [
+                {
+                    "window.menuBarVisibility": "hidden"
+                },
+                {
+                    "window.menuBarVisibility": "compact"
+                }
+            ]
+        },
+        "command": "toggle",
+        "key": "ctrl-shift-q",
     },
     //Navigating
     {
@@ -64,6 +81,11 @@
         "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
     },
     {
+        "command": "workbench.action.openSettingsJson",
+        "key": "ctrl-,",
+        "when": "inSettingsEditor"
+    },
+    {
         "args": {
             "commands": [
                 "workbench.action.toggleSidebarVisibility",
@@ -87,7 +109,7 @@
     },
     {
         "command": "workbench.action.toggleSidebarVisibility",
-        "key": "ctrl-shift-c"
+        "key": "ctrl-shift-c",
     },
     {
         "command": "workbench.action.toggleSidebarVisibility",
@@ -107,7 +129,7 @@
     {
         "command": "workbench.action.closeActiveEditor",
         "key": "ctrl-w",
-        "when": "editorFocus"
+        "when": "editorFocus && !terminalFocus"
     },
     {
         "command": "workbench.action.splitEditorDown",
@@ -247,7 +269,7 @@
         "args": {
             "commands": [
                 "explorer.openAndPassFocus",
-                "workbench.action.toggleSidebarVisibility"
+                // "workbench.action.toggleSidebarVisibility"
             ]
         },
         "command": "runCommands",
@@ -269,5 +291,31 @@
         "command": "toggle",
         "key": "shift-h",
         "when": "filesExplorerFocus"
-    }
+    },
+    // Copilot
+    {
+        "key": "space g c",
+        "command": "runCommands",
+        "when": "vim.mode == 'Normal' && editorTextFocus",
+        "args": {
+            "commands": [
+                "workbench.action.chat.openEditSession"
+            ],
+        }
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.chat.newChat",
+        "when": "chatIsEnabled && inChat"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-workbench.action.chat.newChat",
+        "when": "chatIsEnabled && inChat"
+    },
+    {
+        "key": "ctrl+shift+z",
+        "command": "workbench.action.toggleZenMode",
+        "when": "!isAuxiliaryWindowFocusedContext"
+    },
 ]
