@@ -49,6 +49,9 @@ zinit cdreplay -q
 # Keybindings
 function zvm_after_init() {
     bindkey '^o' autosuggest-accept
+    bindkey '^p' history-search-backward
+    bindkey '^n' history-search-forward
+    bindkey '^[w' kill-region
 }
 #bindkey -v
 #bindkey '^p' history-search-backward
