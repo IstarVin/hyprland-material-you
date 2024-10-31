@@ -3,3 +3,5 @@
 	name = IstarVin
 [url "https://github.com/"]
 	insteadOf = gh:
+[pull]
+	rebase = false
