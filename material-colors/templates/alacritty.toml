@@ -1,5 +1,6 @@
-[general]
-import = ["<output-folder>/alacritty-<color-scheme>.toml"]
+import = [
+    "<output-folder>/alacritty-<color-scheme>.toml"
+]
 
 [font]
 normal = { family = "MesloLGS NF", style = "Regular" }
