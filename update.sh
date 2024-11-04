@@ -30,9 +30,13 @@ perform_update() {
         fi
     done
 
-    echo ":: Performing full repository update..."
+    echo ":: Performing repository update..."
     git fetch origin
-    git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+    echo ":: Performing hard reset..."
+    git reset --hard origin/$CURRENT_BRANCH
 
     echo ":: Running post-update script..."
     "$HOME/dotfiles/setup/after_update.sh"
@@ -46,14 +50,19 @@ status=$?
 case $status in
 0)
     echo ":: No updates available."
+    if [ "$FORCE_UPDATE" == true ]; then
+        echo ":: Forcing update despite no updates..."
+        perform_update
+    fi
     ;;
 1)
+    echo ":: Cannot update: Changes detected in files."
     if [ "$FORCE_UPDATE" == true ]; then
+        echo ":: Forcing update despite local changes..."
         perform_update
     else
-        echo ":: Cannot update: Changes detected in files."
         echo ":: You can write \"$ git diff-index --name-only HEAD --\" to see which files have changed"
-        echo ":: use --force to ignore changes"
+        echo ":: Use --force to ignore changes"
         exit 1
     fi
     ;;
@@ -63,6 +72,10 @@ case $status in
     ;;
 3)
     echo ":: Branches have diverged. Manual intervention may be required."
+    if [ "$FORCE_UPDATE" == true ]; then
+        echo ":: Forcing update despite branch divergence..."
+        perform_update
+    fi
     ;;
 *)
     echo ":: Unknown error."
