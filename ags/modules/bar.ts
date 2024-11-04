@@ -408,10 +408,10 @@ function MediaPlayer() {
         on_primary_click_release: () => {
             toggleMediaWindow();
         },
-        on_secondary_click_release: () => {
+        on_middle_click_release: () => {
             Utils.execAsync(["playerctl", "play-pause"]).catch(print);
         },
-        on_middle_click_release: () => {
+        on_secondary_click_release: () => {
             Utils.execAsync(["hyprctl", "dispatch", "togglespecialworkspace", "music"]);
         },
         child: MaterialIcon("play_circle"),

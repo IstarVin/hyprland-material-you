@@ -1,19 +1,20 @@
 {
-    "extras": [
-        "lazyvim.plugins.extras.editor.harpoon2",
-        "lazyvim.plugins.extras.formatting.prettier",
-        "lazyvim.plugins.extras.lang.go",
-        "lazyvim.plugins.extras.lang.json",
-        "lazyvim.plugins.extras.lang.markdown",
-        "lazyvim.plugins.extras.lang.php",
-        "lazyvim.plugins.extras.lang.python",
-        "lazyvim.plugins.extras.lang.svelte",
-        "lazyvim.plugins.extras.lang.tailwind",
-        "lazyvim.plugins.extras.lang.typescript",
-        "lazyvim.plugins.extras.vscode"
-    ],
-    "news": {
-        "NEWS.md": "6520"
-    },
-    "version": 6
+  "extras": [
+    "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.go",
+    "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.php",
+    "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.lang.svelte",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.vscode"
+  ],
+  "news": {
+    "NEWS.md": "6520"
+  },
+  "version": 6
 }

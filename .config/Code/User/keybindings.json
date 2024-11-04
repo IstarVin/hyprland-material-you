@@ -290,7 +290,7 @@
         },
         "command": "toggle",
         "key": "shift-h",
-        "when": "filesExplorerFocus"
+        "when": "filesExplorerFocus && !inputFocus"
     },
     // Copilot
     {
