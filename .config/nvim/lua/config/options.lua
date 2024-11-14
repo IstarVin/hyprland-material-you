@@ -4,6 +4,6 @@
 
 local opt = vim.opt
 
-opt.shiftwidth = 2
+opt.shiftwidth = 4
 
 vim.g.lazygit_config = false

@@ -109,7 +109,7 @@ install_packages() {
         unzip tmux go bluetooth-autoconnect btop powertop \
         neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
         gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector \
-        python-setproctitle
+        python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk
 
 }
 

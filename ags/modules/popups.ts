@@ -9,6 +9,7 @@ import Box from "types/widgets/box";
 import Slider from "types/widgets/slider";
 import { Binding } from "types/service";
 import { audio_popup } from "./audio";
+import { Stream } from "types/service/audio";
 
 const brightness_icons = [
     "brightness_1",
@@ -17,7 +18,7 @@ const brightness_icons = [
     "brightness_4",
     "brightness_5",
     "brightness_6",
-    "brightness_7",
+    "brightness_7"
 ];
 
 function get_brightness_icon(brightness: number): string {
@@ -43,13 +44,13 @@ function get_brightness_icon(brightness: number): string {
 type popup_on_change = ((self: Slider<any>) => void) | undefined;
 type popup_setup =
     | ((
-        self: Revealer<
-            Box<Gtk.Widget | Slider<unknown>, unknown>,
-            {
-                count: number;
-            }
-        >,
-    ) => void)
+          self: Revealer<
+              Box<Gtk.Widget | Slider<unknown>, unknown>,
+              {
+                  count: number;
+              }
+          >
+      ) => void)
     | undefined;
 
 const default_popup = (
@@ -57,39 +58,47 @@ const default_popup = (
     value: number | Binding<any, any, number>,
     on_change?: popup_on_change,
     setup?: popup_setup,
-) => Widget.Revealer({
-    transition_duration: 200,
-    transition: "slide_up",
-    child: Widget.Revealer({
-        reveal_child: false,
-        transition_duration: 190,
-        transition: "crossfade",
-        child: Widget.Box({
-            class_name: "popup",
-            children: [
-                icon,
-                Widget.Slider({
-                    min: 0,
-                    max: 100,
-                    draw_value: false,
-                    class_name: "popup_slider",
-                    value: value,
-                    on_change: on_change,
-                }),
-            ],
+    rovalue?: any,
+    key?: string
+) =>
+    Widget.Revealer({
+        transition_duration: 200,
+        transition: "slide_up",
+        child: Widget.Revealer({
+            reveal_child: false,
+            transition_duration: 190,
+            transition: "crossfade",
+            child: Widget.Box({
+                class_name: "popup",
+                children: [
+                    icon,
+                    Widget.Slider({
+                        min: 0,
+                        max: 100,
+                        draw_value: false,
+                        class_name: "popup_slider",
+                        value: value,
+                        on_change: on_change
+                    }),
+                    Widget.Label({
+                        label: rovalue.bind(key).as((val) => {
+                            return Math.floor(val * 100).toString();
+                        })
+                    })
+                ]
+            }),
+            attribute: { count: 0 },
+            setup: setup
         }),
-        attribute: { count: 0 },
-        setup: setup,
-    }),
-    setup: (self) => {
-        self.child.connect("notify::child-revealed", () => {
-            self.reveal_child = self.child.child_revealed;
-        });
-        self.child.connect("notify::reveal-child", () => {
-            if (self.child.reveal_child) self.reveal_child = true;
-        });
-    },
-});
+        setup: (self) => {
+            self.child.connect("notify::child-revealed", () => {
+                self.reveal_child = self.child.child_revealed;
+            });
+            self.child.connect("notify::reveal-child", () => {
+                if (self.child.reveal_child) self.reveal_child = true;
+            });
+        }
+    });
 
 const backlight_popup = () =>
     default_popup(
@@ -110,6 +119,8 @@ const backlight_popup = () =>
                 });
             });
         },
+        backlight_service,
+        "screen_value"
     );
 
 const volume_popup = () =>
@@ -121,12 +132,12 @@ const volume_popup = () =>
                 [67, "volume_up"],
                 [34, "volume_down"],
                 [1, "volume_mute"],
-                [0, "volume_off"],
+                [0, "volume_off"]
             ].find(([threshold]) => Number(threshold) <= vol)?.[1];
             if (audio.speaker.is_muted) self.label = "volume_off";
             else self.label = String(icon!);
         }),
-        audio.speaker.bind("volume").as((volume) => Math.floor(volume * 100)),
+        audio.speaker.bind("volume").as((volume) => Math.floor(volume * 75)),
         (self) => {
             audio.speaker.volume = self.value / 100;
         },
@@ -141,6 +152,8 @@ const volume_popup = () =>
                 });
             });
         },
+        audio.speaker,
+        "volume"
     );
 
 export const popups = (monitor = 0) => {
@@ -153,10 +166,10 @@ export const popups = (monitor = 0) => {
         child: Widget.Box({
             css: "min-height: 1px; min-width: 1px;",
             vertical: true,
-            children: [_backlight_popup, _volume_popup],
+            children: [_backlight_popup, _volume_popup]
         }),
         class_name: "popups",
         anchor: ["top"],
-        visible: true,
+        visible: true
     });
 };
