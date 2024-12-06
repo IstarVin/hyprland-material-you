@@ -13,11 +13,21 @@ if [[ -n "$args" ]]; then
 else
     paths=$(find ~/Projects/ ~/Projects/deno-prac/ -mindepth 1 -maxdepth 1 -type d)
     paths+=$(printf "\n%s" "/home/aj/dotfiles")
+    paths+=$(printf "\n%s" "create-new")
     selected=$(echo "$paths" | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
+fi
+
+if [[ $selected == "create-new" ]]; then
+    echo "Enter new project name: "
+    read project_name
+
+    selected="/home/aj/Projects/$project_name"
+    echo $selected
+    mkdir $selected
 fi
 
 if [[ $useCode -eq 1 ]]; then

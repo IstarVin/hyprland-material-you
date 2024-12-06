@@ -267,7 +267,14 @@ function BatteryLabel() {
                 visible: battery.bind("energy_rate").as((energy_rate) => energy_rate != 0)
             })
         ],
-        tooltip_text: battery.bind("percent").as((p) => `Battery: ${p > 0 ? p : 0}%`),
+        // tooltip_text: battery.bind("percent").as((p) => `Battery: ${p > 0 ? p : 0}%`),
+        tooltip_text: battery.bind("time_remaining").as((seconds) => {
+            const hours = Math.floor(seconds / 3600); // 1 hour = 3600 seconds
+            const minutes = Math.floor((seconds % 3600) / 60); // Remaining minutes
+            // const remainingSeconds = seconds % 60; // Remaining seconds (if needed)
+
+            return `${hours} hr ${minutes} min`;
+        }),
         setup: (self) => {
             self.hook(battery, () => {
                 self.children[0].label = getClosestBatteryLevel(battery.percent, battery.charging);
@@ -499,8 +506,8 @@ function TaskBar() {
                         client.initialTitle === "Settings"
                             ? "emblem-system-symbolic"
                             : client.initialTitle === "Emoji Picker"
-                              ? "face-smile-symbolic"
-                              : undefined;
+                            ? "face-smile-symbolic"
+                            : undefined;
                 } else {
                     icon = getIconNameFromClass(client.class);
                 }

@@ -7,12 +7,16 @@ import json
 
 parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--browser', type=str, help="Change default browser")
-group.add_argument('--filemanager', type=str, help="Change file manager")
-group.add_argument('--editor', type=str, help="Change default editor")
-group.add_argument('--terminal', type=str, help="Change default terminal")
-group.add_argument('--get', type=str, help="Get default app",
-                   choices=["browser", "editor", "terminal", "filemanager"])
+group.add_argument("--browser", type=str, help="Change default browser")
+group.add_argument("--filemanager", type=str, help="Change file manager")
+group.add_argument("--editor", type=str, help="Change default editor")
+group.add_argument("--terminal", type=str, help="Change default terminal")
+group.add_argument(
+    "--get",
+    type=str,
+    help="Get default app",
+    choices=["browser", "editor", "terminal", "filemanager"],
+)
 
 args = parser.parse_args()
 
@@ -22,8 +26,7 @@ editor = args.editor
 terminal = args.terminal
 get = args.get
 
-value = (args.browser or args.filemanager or
-         args.editor or args.terminal or args.get)
+value = args.browser or args.filemanager or args.editor or args.terminal or args.get
 
 u = os.path.expanduser
 
@@ -54,8 +57,7 @@ def which(program: str):
 
 def extract_associations(env_str):
     pattern = re.compile(
-        r'^\s*env\s*=\s*(\w+)\s*,\s*(.*?)\s*#\s*!\s*-\s*@(\w+)\s*$',
-        re.MULTILINE
+        r"^\s*env\s*=\s*(\w+)\s*,\s*(.*?)\s*#\s*!\s*-\s*@(\w+)\s*$", re.MULTILINE
     )
     associations = {}
     matches = pattern.findall(env_str)
@@ -72,12 +74,9 @@ associations = extract_associations(env_str)
 
 def replace_value(env_str, key, new_value):
     pattern = re.compile(
-        r'^(\s*env\s*=\s*' +
-        re.escape(key) +
-        r'\s*,\s*)(.*?)\s*(#.*)?$',
-        re.MULTILINE
+        r"^(\s*env\s*=\s*" + re.escape(key) + r"\s*,\s*)(.*?)\s*(#.*)?$", re.MULTILINE
     )
-    return re.sub(pattern, r'\1' + new_value + r'  \3', env_str)
+    return re.sub(pattern, r"\1" + new_value + r"  \3", env_str)
 
 
 class AssociationNotFound(Exception):
@@ -113,7 +112,7 @@ def read_json_config():
 
 def write_json_config(config):
     try:
-        with open(JSON_CONFIG_FILE, 'w') as json_file:
+        with open(JSON_CONFIG_FILE, "w") as json_file:
             json.dump(config, json_file, indent=4)
     except IOError as e:
         print(f"Error writing to {JSON_CONFIG_FILE}: {e}")
@@ -141,7 +140,10 @@ elif editor:
 elif terminal:
     change_association("terminal", value)
     update_json_config("terminal", value)
+    os.system(
+        f"gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal {value}"
+    )
 
 if env_str != original_env_str:
-    with open(CONFIG_FILE, 'w') as f:
-        f.write(env_str + '\n')
+    with open(CONFIG_FILE, "w") as f:
+        f.write(env_str + "\n")

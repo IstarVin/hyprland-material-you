@@ -16,16 +16,16 @@ const AppItem = (repopulate: () => void) => (app: Application) => {
                     class_name: "application_icon",
                     // @ts-ignore
                     icon: Utils.lookUpIcon(app.icon_name) ? app.icon_name : "image-missing",
-                    size: 42,
+                    size: 42
                 }),
                 Widget.Label({
                     class_name: "application_label",
                     label: app.name,
                     xalign: 0,
                     vpack: "center",
-                    truncate: "end",
-                }),
-            ],
+                    truncate: "end"
+                })
+            ]
         }),
         on_clicked: (self) => {
             clickCount++;
@@ -35,7 +35,7 @@ const AppItem = (repopulate: () => void) => (app: Application) => {
                 repopulate();
                 clickCount = 0;
             }
-        },
+        }
     });
 
     button.connect("focus-out-event", () => {
@@ -49,9 +49,9 @@ const AppItem = (repopulate: () => void) => (app: Application) => {
             button,
             Widget.Separator({
                 class_name: "application_divider",
-                orientation: Gtk.Orientation.HORIZONTAL,
-            }),
-        ],
+                orientation: Gtk.Orientation.HORIZONTAL
+            })
+        ]
     });
 };
 
@@ -59,7 +59,7 @@ export const Applauncher = () => {
     let applications: Box<any, any>[];
 
     const list = Widget.Box({
-        vertical: true,
+        vertical: true
     });
 
     const entry = Widget.Entry({
@@ -78,7 +78,7 @@ export const Applauncher = () => {
         on_change: ({ text }) =>
             applications.forEach((item) => {
                 item.visible = item.attribute.app.match(text ?? "");
-            }),
+            })
     });
 
     function reload() {
@@ -87,7 +87,12 @@ export const Applauncher = () => {
     }
 
     function repopulate() {
-        applications = applications_service.query("").map(AppItem(repopulate));
+        applications = applications_service
+            .query("")
+            .filter((app) => {
+                return !app.app.filename?.includes("waydroid");
+            })
+            .map(AppItem(repopulate));
         list.children = applications;
     }
 
@@ -97,9 +102,9 @@ export const Applauncher = () => {
                 label: "Reload apps",
                 on_activate: (self) => {
                     reload();
-                },
-            }),
-        ],
+                }
+            })
+        ]
     });
 
     repopulate();
@@ -118,8 +123,8 @@ export const Applauncher = () => {
                 Widget.Scrollable({
                     hscroll: "never",
                     child: list,
-                    vexpand: true,
-                }),
+                    vexpand: true
+                })
             ],
             setup: (self) => {
                 self.hook(shown, () => {
@@ -131,9 +136,10 @@ export const Applauncher = () => {
                     if (visible) {
                         entry.text = "";
                         entry.grab_focus();
+                        reload();
                     }
                 });
-            },
-        }),
+            }
+        })
     });
 };

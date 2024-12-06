@@ -332,5 +332,10 @@
     "key": "ctrl-k",
     "command": "workbench.action.quickOpenSelectPrevious",
     "when": "inQuickOpen"
+  },
+  {
+    "key": "shift-j",
+    "command": "list.collapseAll",
+    "when": "explorerViewletFocus"
   }
 ]

@@ -293,6 +293,8 @@ misc_tasks() {
     use_zsh
 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
 }
 
 use_zsh() {

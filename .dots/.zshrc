@@ -112,6 +112,7 @@ alias 144fps='hyprctl keyword monitor ,1920x1080@144,,1'
 alias Quiet='asusctl profile -P Quiet'
 alias Balanced='asusctl profile -P Balanced'
 alias Performance='asusctl profile -P Performance'
+alias incognito='unset HISTFILE'
 
 alias charge='asusctl -c'
 alias keyboard_color='asusctl led-mode static -c 803dba'

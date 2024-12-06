@@ -52,7 +52,7 @@
   "editor.selectionHighlight": false,
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": false,
-  "explorer.excludeGitIgnore": true,
+  "explorer.excludeGitIgnore": false,
   "explorer.incrementalNaming": "smart",
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
@@ -124,5 +124,11 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none"
+  "zenMode.showTabs": "none",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
