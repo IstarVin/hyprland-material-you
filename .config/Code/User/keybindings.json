@@ -337,5 +337,15 @@
     "key": "shift-j",
     "command": "list.collapseAll",
     "when": "explorerViewletFocus"
+  },
+  {
+    "key": "tab",
+    "command": "editor.action.indentLines",
+    "when": "vim.mode == 'VisualLine'"
+  },
+  {
+    "key": "shift+tab",
+    "command": "editor.action.outdentLines",
+    "when": "vim.mode == 'VisualLine'"
   }
 ]
