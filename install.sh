@@ -98,7 +98,7 @@ install_packages() {
         hyprutils hyprwayland-scanner xdg-dbus-proxy xdg-desktop-portal \
         xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xdg-user-dirs \
         xdg-utils libxdg-basedir python-pyxdg swww gtk3 gtk4 \
-        adw-gtk3 adw-gtk-theme libdbusmenu-gtk3 python-pip python-pillow sddm \
+        adw-gtk-theme libdbusmenu-gtk3 python-pip python-pillow sddm \
         sddm-theme-corners-git nm-connection-editor network-manager-applet \
         networkmanager gnome-bluetooth-3.0 wl-gammarelay-rs bluez bluez-libs bluez-utils \
         cliphist wl-clipboard libadwaita swappy nwg-look \
@@ -114,7 +114,8 @@ install_packages() {
         unzip tmux go bluetooth-autoconnect btop powertop \
         neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
         gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector \
-        python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk
+        python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk \
+        ttf-space-mono-nerd ttf-ms-win10-auto
 
     install_agsv1
 }
@@ -325,10 +326,7 @@ UUID=$uuid /mnt/AJ btrfs defaults 0 2
         ln -sf /mnt/AJ/{Documents,Downloads,Pictures,Projects,Videos} $HOME
 
         cp -r /mnt/AJ/.ssh/ $HOME
-        # cwd=$(pwd)
-        # cd $main_cwd
-        # bash link_configs.sh
-        # cd $cwd
+
 
         mkdir ~/.hehe
     fi
@@ -430,4 +428,4 @@ main() {
     echo "Please restart your PC"
 }
 
-main "$@"
+#main "$@"
