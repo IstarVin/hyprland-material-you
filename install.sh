@@ -408,7 +408,7 @@ main() {
     preference_select "file manager" "filemanager" "nautilus"
     preference_select "internet browser" "browser" "brave"
     preference_select "terminal emulator" "terminal" "alacritty"
-    proceed "Proceed with installing MicroTex?" false && install_microtex
+   # proceed "Proceed with installing MicroTex?" false && install_microtex
     proceed "Proceed with setting up sensors?" false && setup_sensors
     proceed "Proceed with checking config folders?*" && check_config_folders
     proceed "Proceed with installing icon themes?" false && install_icon_theme
@@ -428,4 +428,4 @@ main() {
     echo "Please restart your PC"
 }
 
-#main "$@"
+main "$@"
