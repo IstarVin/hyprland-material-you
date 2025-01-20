@@ -227,7 +227,7 @@
   {
     "command": "filesExplorer.paste",
     "key": "p",
-    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
   },
   {
     "command": "filesExplorer.cut",
@@ -242,7 +242,7 @@
   {
     "command": "explorer.newFile",
     "key": "a",
-    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
   },
   {
     "command": "explorer.openToSide",

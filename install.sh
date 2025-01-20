@@ -389,6 +389,14 @@ rog_setup() {
     fi
 }
 
+docker_setup() {
+    yay -S docker docker-compose
+    sudo usermod -aG docker "$USER"
+    sudo systemctl enable --now docker.service
+
+
+}
+
 main() {
     main_cwd=$(pwd)
 
@@ -428,4 +436,6 @@ main() {
     echo "Please restart your PC"
 }
 
-main "$@"
+if [ "$1" != '-s' ]; then
+    main "$@"
+fi
