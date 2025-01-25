@@ -112,7 +112,7 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1,
-  "workbench.activityBar.location": "hidden",
+  // "workbench.activityBar.location": "hidden",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "catppuccin-mocha",
@@ -130,5 +130,6 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "sqltools.useNodeRuntime": true
 }

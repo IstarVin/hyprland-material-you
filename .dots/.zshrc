@@ -135,5 +135,7 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # source ~/.bash_profile
 
+#eval $(warp-cli generate-completions zsh)
+
 PATH="/home/aj/.local/bin/:/home/aj/.bin:/home/aj/.config/hypr/scripts:$PATH"
 PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
