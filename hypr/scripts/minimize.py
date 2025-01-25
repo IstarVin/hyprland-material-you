@@ -37,13 +37,19 @@ current_window_json = subprocess.run(
 ).stdout
 current_window = json.loads(current_window_json)
 
-current_workspace = current_window["workspace"]["id"]
+if current_window != {}:
+    current_workspace = current_window["workspace"]["id"]
+    ws = current_window["workspace"]["name"]
+else:
+    current_wokrspace_json = subprocess.run(
+        ["hyprctl", "-j", "activeworkspace"], capture_output=True, text=True
+    ).stdout
+    current_workspace = json.loads(current_wokrspace_json)["id"]
+    ws = current_workspace
 
 
 if window["workspace"]["id"] != current_workspace:
-    os.system(
-        f"hyprctl dispatch movetoworkspacesilent {current_window['workspace']['name']},{args.window}"
-    )
+    os.system(f"hyprctl dispatch movetoworkspacesilent {ws},{args.window}")
     os.system(f"hyprctl dispatch focuswindow {args.window}")
 
 else:
