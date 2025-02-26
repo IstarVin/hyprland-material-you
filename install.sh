@@ -232,7 +232,7 @@ copy_files() {
 
 create_links() {
     echo ":: Creating links"
-    ln -f $HOME/dotfiles/electron-flags.conf $HOME/.config/electron-flags.conf
+    # ln -f $HOME/dotfiles/electron-flags.conf $HOME/.config/electron-flags.conf
     ln -s $HOME/dotfiles/ags $HOME/.config/ags
     ln -s $HOME/dotfiles/alacritty $HOME/.config/alacritty
     ln -s $HOME/dotfiles/hypr $HOME/.config/hypr
