@@ -118,7 +118,8 @@ alias charge='asusctl -c'
 alias keyboard_color='asusctl led-mode static -c 803dba'
 
 alias home-server='ssh home-server'
-alias aj-home='ssh aj-home'
+alias aj-server='ssh aj-server'
+alias source-zsh='source ~/.zshrc'
 
 # Shell integrations
 eval "$(fzf --zsh)"
