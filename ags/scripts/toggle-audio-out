@@ -1,0 +1,30 @@
+#!/bin/python3
+
+import subprocess
+import json
+
+sinks_json = subprocess.run(
+    ["pactl", "-f", "json", "list", "sinks"], capture_output=True, text=True
+).stdout
+
+sinks_obj = json.loads(sinks_json)
+
+sinks = [i["name"] for i in sinks_obj]
+
+current_sink = subprocess.run(
+    ["pactl", "get-default-sink"], capture_output=True, text=True
+).stdout.strip()
+
+current_index = sinks.index(current_sink)
+
+next_index = (current_index + 1) % len(sinks)
+
+next_sink = sinks[next_index]
+
+if next_index == current_index:
+    exit()
+
+description = sinks_obj[next_index]["description"]
+
+subprocess.run(["pactl", "set-default-sink", next_sink])
+subprocess.run(["notify-send", "Changed audio output", description])
