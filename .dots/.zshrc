@@ -115,7 +115,7 @@ alias Performance='asusctl profile -P Performance'
 alias incognito='unset HISTFILE'
 
 alias charge='asusctl -c'
-alias keyboard_color='asusctl led-mode static -c 803dba'
+alias keyboard_color='asusctl aura static -c 803dba'
 
 alias home-server='ssh home-server'
 alias aj-server='ssh aj-server'

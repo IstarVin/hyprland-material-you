@@ -72,7 +72,6 @@
     "scminput": false,
     "dotenv": false
   },
-  "material-icon-theme.hidesExplorerArrows": true,
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
   "sqltools.useNodeRuntime": true,
@@ -123,10 +122,7 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1,
-  // "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -136,10 +132,9 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
   "zenMode.showTabs": "none",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.colorTheme": "Catppuccin Mocha"
 }
