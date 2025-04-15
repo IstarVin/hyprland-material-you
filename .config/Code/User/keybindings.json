@@ -34,6 +34,7 @@
     "command": "toggle",
     "key": "ctrl-shift-q"
   },
+
   //Navigating
   {
     "command": "workbench.action.navigateLeft",
@@ -82,8 +83,11 @@
   },
   {
     "command": "workbench.action.openSettingsJson",
-    "key": "ctrl-,",
-    "when": "inSettingsEditor"
+    "key": "ctrl-shift-,"
+  },
+  {
+    "command": "workbench.action.openGlobalKeybindingsFile",
+    "key": "ctrl-shift-b"
   },
   {
     "args": {
@@ -132,9 +136,15 @@
     "when": "editorFocus && !terminalFocus"
   },
   {
+    "command": "workbench.action.closeOtherEditors",
+    "key": "ctrl-shift-w",
+    "when": "editorFocus && !terminalFocus"
+  },
+  {
     "command": "workbench.action.splitEditorDown",
     "key": "ctrl+shift+-"
   },
+
   // Coding
   {
     "command": "editor.action.startFindReplaceAction",
@@ -213,6 +223,7 @@
     "key": "space space",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
+
   //File Explorer
   {
     "command": "renameFile",
@@ -289,6 +300,7 @@
     "key": "shift-h",
     "when": "filesExplorerFocus && !inputFocus"
   },
+
   // Copilot
   {
     "key": "space g c",
@@ -308,6 +320,8 @@
     "command": "-workbench.action.chat.newChat",
     "when": "chatIsEnabled && inChat"
   },
+
+  //Misc
   {
     "key": "ctrl+shift+z",
     "command": "workbench.action.toggleZenMode",
@@ -347,5 +361,57 @@
     "key": "shift+tab",
     "command": "editor.action.outdentLines",
     "when": "vim.mode == 'VisualLine'"
+  },
+
+  //Terminal
+  {
+    "key": "ctrl-shift-c",
+    "command": "workbench.action.terminal.copySelection",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-v",
+    "command": "workbench.action.terminal.paste",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-l",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-h",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-shift-k",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-shift-j",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-w",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-\\",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-shift-w",
+    "command": "workbench.action.terminal.killAll",
+    "when": "terminalFocus"
   }
 ]
