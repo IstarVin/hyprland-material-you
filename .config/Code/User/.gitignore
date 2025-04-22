@@ -1,3 +1,6 @@
-History
-globalStorage
-workspaceStorage
+*
+!profiles
+!snippets
+!settings.json
+!keybindings.json
+!tasks.json
