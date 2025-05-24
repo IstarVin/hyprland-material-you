@@ -20,6 +20,10 @@
     "when": "inKeybindings"
   },
   {
+    "command": "saveAll",
+    "key": "ctrl+alt+s"
+  },
+  {
     "args": {
       "id": "toggleMenuBar",
       "value": [
