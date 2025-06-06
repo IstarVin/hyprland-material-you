@@ -1,10 +1,10 @@
 // by koeqaife ;)
 
 const applications_service = await Service.import("applications");
-import Box from "types/widgets/box";
 import Gtk from "gi://Gtk?version=3.0";
-import { Application } from "types/service/applications";
 import { shown, WINDOW_NAME } from "modules/sideleft/main";
+import { Application } from "types/service/applications";
+import Box from "types/widgets/box";
 
 const AppItem = (repopulate: () => void) => (app: Application) => {
     let clickCount = 0;
@@ -128,15 +128,23 @@ export const Applauncher = () => {
             ],
             setup: (self) => {
                 self.hook(shown, () => {
-                    if (shown.value == "apps") entry.grab_focus();
+                    try {
+                        if (shown.value == "apps") entry.grab_focus();
+                    } catch (e) {
+                        print("Error while reloading applications:", e);
+                    }
                 });
                 self.hook(App, (_, windowName, visible) => {
                     if (windowName !== WINDOW_NAME) return;
 
-                    if (visible) {
-                        entry.text = "";
-                        entry.grab_focus();
-                        reload();
+                    try {
+                        if (visible) {
+                            entry.text = "";
+                            entry.grab_focus();
+                            reload();
+                        }
+                    } catch (e) {
+                        print("Error while setting application popup:", e);
                     }
                 });
             }

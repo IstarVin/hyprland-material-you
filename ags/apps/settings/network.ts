@@ -1,12 +1,11 @@
 // by koeqaife ;)
 
-import { timeout } from "resource:///com/github/Aylur/ags/utils.js";
 import { MaterialIcon } from "icons";
-const systemtray = await Service.import("systemtray");
-const network = await Service.import("network");
-import { current_tab, current_window, saved_networks } from "./variables";
 import Box from "types/widgets/box";
 import Revealer from "types/widgets/revealer";
+import { current_tab, current_window, saved_networks } from "./variables";
+const systemtray = await Service.import("systemtray");
+const network = await Service.import("network");
 
 const WIFI_ICONS = {
     "network-wireless-signal-excellent-symbolic": "signal_wifi_4_bar",
@@ -163,9 +162,8 @@ const WifiToggle = () =>
                     active: network.wifi.enabled,
                     setup: (self) => {
                         self.hook(network, () => {
-                            if (network.wifi.enabled != self.active) {
-                                self.set_active(network.wifi.enabled);
-                            }
+                            if (!network.wifi) return;
+                            if (network.wifi.enabled != self.active) self.set_active(network.wifi.enabled ?? false);
                         });
                     },
                 }),
@@ -177,31 +175,32 @@ const WifiToggle = () =>
     });
 
 const WifiList = () => {
-    const updateNetwork = (
-        accessPoints: AccessPoint[],
-        self: Box<Box<any, any>, any>,
-    ) => {
-        const current_ssid = network.wifi?.ssid;
+    const updateNetwork = (accessPoints: AccessPoint[], self: Box<Box<any, any>, any>) => {
+        try {
+            const current_ssid = network.wifi?.ssid;
 
-        accessPoints.forEach((accessPoint) => {
-            const existing_network = self.children.find((child) => child.attribute.ssid === accessPoint.ssid);
+            accessPoints.forEach((accessPoint) => {
+                const existing_network = self.children.find((child) => child.attribute.ssid === accessPoint.ssid);
 
-            if (existing_network) {
-                existing_network.attribute.update(accessPoint);
-            } else {
-                self.pack_start(WifiNetwork(accessPoint), false, false, 0);
-            }
-        });
+                if (existing_network) {
+                    existing_network.attribute.update(accessPoint);
+                } else {
+                    self.pack_start(WifiNetwork(accessPoint), false, false, 0);
+                }
+            });
 
-        self.children = self.children.filter((child: any) =>
-            accessPoints.find((ap) => ap.ssid === child.attribute.ssid)
-        );
+            self.children = self.children.filter((child: any) =>
+                accessPoints.find((ap) => ap.ssid === child.attribute.ssid)
+            );
 
-        self.children = self.children.sort((a: any, b: any) => {
-            if (a.attribute.ssid === current_ssid) return -1;
-            if (b.attribute.ssid === current_ssid) return 1;
-            return 0;
-        });
+            self.children = self.children.sort((a: any, b: any) => {
+                if (a.attribute.ssid === current_ssid) return -1;
+                if (b.attribute.ssid === current_ssid) return 1;
+                return 0;
+            });
+        } catch (e) {
+            print("Error while reloading networks:", e);
+        }
     };
 
     return Widget.Box({
@@ -209,7 +208,7 @@ const WifiList = () => {
         className: "wifi_list",
         attribute: {
             updateNetworks: (self) => {
-                const accessPoints = network.wifi?.access_points || [];
+                const accessPoints = network.wifi?.access_points ?? [];
                 updateNetwork(accessPoints, self);
             },
         },

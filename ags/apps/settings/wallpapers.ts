@@ -219,7 +219,7 @@ export function Wallpapers() {
                 },
                 setup: (self) => {
                     self.hook(changing, () => {
-                        self.toggleClassName("disabled", changing.value);
+                        self.toggleClassName("disabled", changing.value ?? false);
                     });
                 },
             }),
@@ -241,7 +241,7 @@ export function Wallpapers() {
                 },
                 setup: (self) => {
                     self.hook(changing, () => {
-                        self.toggleClassName("disabled", changing.value);
+                        self.toggleClassName("disabled", changing.value ?? false);
                     });
                 },
             }),
