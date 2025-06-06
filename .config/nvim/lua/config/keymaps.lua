@@ -14,6 +14,11 @@ map(
   "<S-l>",
   -- Notice that I start it in normal mode to navigate similarly to bufexplorer,
   -- the ivy theme is also similar to bufexplorer and tmux sessions
-  "<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal theme=ivy<cr>",
+  "<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<cr>",
   { desc = "[P]Open telescope buffers" }
 )
+
+-- map("n", "<leader>e", "<Cmd>Neotree toggle position=right<cr>")
+map("n", "<C-w>", function()
+  Snacks.bufdelete()
+end)

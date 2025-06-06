@@ -53,10 +53,14 @@ function zvm_after_init() {
     bindkey '^n' history-search-forward
     bindkey '^[w' kill-region
 }
-#bindkey -v
+# bindkey -v
 #bindkey '^p' history-search-backward
 #bindkey '^n' history-search-forward
 #bindkey '^[w' kill-region
+# bindkey '^o' autosuggest-accept
+# bindkey '^p' history-search-backward
+# bindkey '^n' history-search-forward
+# bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
@@ -115,11 +119,16 @@ alias Performance='asusctl profile -P Performance'
 alias incognito='unset HISTFILE'
 
 alias charge='asusctl -c'
-alias keyboard_color='asusctl led-mode static -c 803dba'
+alias keyboard_color='asusctl aura static -c 803dba'
 
 alias home-server='ssh home-server'
 alias aj-server='ssh aj-server'
 alias source-zsh='source ~/.zshrc'
+
+alias mpv-hehe='/mnt/AJ/Projects/mpv-shim-hehe/main'
+
+alias animation-off='hyprctl keyword animations:enabled 0'
+alias animation-on='hyprctl keyword animations:enabled 1'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -141,3 +150,13 @@ eval "$(zoxide init --cmd cd zsh)"
 PATH="/home/aj/.local/bin/:/home/aj/.bin:/home/aj/.config/hypr/scripts:$PATH"
 PATH="${PATH}:/opt/android-sdk/platform-tools"
 PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+PATH="/home/aj/.bun/bin:$PATH"
+
+
+# pnpm
+export PNPM_HOME="/home/aj/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

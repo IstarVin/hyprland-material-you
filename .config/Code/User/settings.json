@@ -1,8 +1,14 @@
 {
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
@@ -18,17 +24,24 @@
   //     "editor.defaultFormatter": "charliermarsh.ruff"
   // },
   "[svelte]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "breadcrumbs.enabled": false,
   "catppuccin-icons.hidesExplorerArrows": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.sortImports": "always"
+  },
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 12,
-  "editor.fontFamily": "'SpaceMono Nerd Font', 'monospace', monospace",
+  // "editor.fontFamily": "SpaceMono Nerd Font",
+  "editor.fontFamily": "'Cascadia Code',  monospace",
+  "editor.fontLigatures": true,
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
@@ -38,6 +51,7 @@
   "editor.guides.indentation": true,
   "editor.hideCursorInOverviewRuler": true,
   "editor.hover.enabled": true,
+  "editor.insertSpaces": true,
   "editor.language.colorizedBracketPairs": [
     ["<", "/>"],
     ["<", ">"],
@@ -51,6 +65,11 @@
   "editor.minimap.enabled": false,
   "editor.occurrencesHighlight": "off",
   "editor.overviewRulerBorder": false,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "other": true,
+    "strings": true
+  },
   "editor.renderControlCharacters": false,
   "editor.renderLineHighlight": "none",
   "editor.renderWhitespace": "none",
@@ -67,12 +86,11 @@
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": false,
-    "plaintext": false,
+    "dotenv": false,
     "markdown": true,
-    "scminput": false,
-    "dotenv": false
+    "plaintext": false,
+    "scminput": false
   },
-  "material-icon-theme.hidesExplorerArrows": true,
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
   "sqltools.useNodeRuntime": true,
@@ -104,11 +122,12 @@
   "terminal.integrated.shellIntegration.history": 1000,
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.stickyScroll.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
       "before": [":"],
-      "commands": ["workbench.action.showCommands"],
+      "commands": ["workbench.action.quickOpen"],
       "silent": true
     }
   ],
@@ -116,17 +135,13 @@
   "vim.useSystemClipboard": true,
   "window.commandCenter": false,
   "window.customMenuBarAltFocus": false,
-  "window.customTitleBarVisibility": "never",
+  "window.customTitleBarVisibility": "auto",
   "window.enableMenuBarMnemonics": false,
-  "window.experimentalControlOverlay": false,
-  "window.menuBarVisibility": "toggle",
+  "window.menuBarVisibility": "hidden",
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
-  "window.zoomLevel": 1,
-  // "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "Catppuccin Mocha",
+  "window.zoomLevel": 1.25,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -137,9 +152,16 @@
   "zenMode.hideStatusBar": true,
   "zenMode.showTabs": "none",
   "[typescriptreact]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
   }
 }

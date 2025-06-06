@@ -115,7 +115,7 @@ install_packages() {
         neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
         gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector \
         python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk \
-        ttf-space-mono-nerd ttf-ms-win10-auto
+        ttf-space-mono-nerd ttf-ms-win10-auto yt-dlp bind nmap youtube-music
 
     install_agsv1
 }

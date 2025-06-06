@@ -11,7 +11,7 @@ fi
 if [[ -n "$args" ]]; then
     selected=$args
 else
-    paths=$(find ~/Projects/ ~/Projects/deno-prac/ -mindepth 1 -maxdepth 1 -type d)
+    paths=$(find ~/Projects/ -mindepth 1 -maxdepth 1 -type d)
     paths+=$(printf "\n%s" "/home/aj/dotfiles")
     paths+=$(printf "\n%s" "create-new")
     selected=$(echo "$paths" | fzf)
