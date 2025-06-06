@@ -1,9 +1,9 @@
 // by koeqaife ;)
 
 const WINDOW_NAME = "cliphist";
-import popupwindow from "./misc/popupwindow.ts";
 import Gtk from "gi://Gtk?version=3.0";
 import { MaterialIcon } from "icons";
+import popupwindow from "./misc/popupwindow.ts";
 
 type EntryObject = {
     id: string;
@@ -88,18 +88,22 @@ function ClipHistItem(entry: string) {
     }
 
     function hide_image() {
-        if (!_show_image) return;
-        const box = button.child;
-        box.children[2].destroy();
-        const label = Widget.Label({
-            label: content,
-            class_name: "clip_label",
-            xalign: 0,
-            vpack: "center",
-            truncate: "end",
-        });
-        box.children = [...box.children, label];
-        _show_image = false;
+        try {
+            if (!_show_image) return;
+            const box = button.child;
+            box.children[2].destroy();
+            const label = Widget.Label({
+                label: content,
+                class_name: "clip_label",
+                xalign: 0,
+                vpack: "center",
+                truncate: "end"
+            });
+            box.children = [...box.children, label];
+            _show_image = false;
+        } catch (e) {
+            print("Couldn't hide image:", e);
+        }
     }
 
     button.connect("clicked", () => {

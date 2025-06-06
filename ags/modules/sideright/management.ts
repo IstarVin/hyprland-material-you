@@ -4,9 +4,9 @@ const notifications = await Service.import("notifications");
 const network = await Service.import("network");
 const bluetooth = await Service.import("bluetooth");
 import { OpenSettings } from "apps/settings/main.ts";
-import { WINDOW_NAME } from "./main.ts";
-import { idle_inhibitor, night_light, theme } from "variables.ts";
 import { MaterialIcon } from "icons.ts";
+import { idle_inhibitor, night_light, theme } from "variables.ts";
+import { WINDOW_NAME } from "./main.ts";
 
 import Gtk from "gi://Gtk?version=3.0";
 
@@ -49,7 +49,7 @@ function WifiIndicator() {
         ],
         setup: (self) => {
             self.hook(network, () => {
-                ssid.label = network.wifi.ssid || "Unknown";
+                ssid.label = network.wifi.ssid ?? "Unknown";
                 ssid.visible = !!network.wifi.ssid;
             });
         },
@@ -127,10 +127,7 @@ function Page1() {
                         setup: (self) => {
                             if (network.wifi) {
                                 self.hook(network.wifi, () => {
-                                    self.toggleClassName(
-                                        "active",
-                                        network.wifi.enabled,
-                                    );
+                                    self.toggleClassName("active", network.wifi.enabled ?? false);
                                 });
                             }
                         },
@@ -152,10 +149,7 @@ function Page1() {
                         },
                         setup: (self) => {
                             self.hook(bluetooth, () => {
-                                self.toggleClassName(
-                                    "active",
-                                    bluetooth.enabled,
-                                );
+                                self.toggleClassName("active", bluetooth.enabled ?? false);
                             });
                         },
                     }),
@@ -246,10 +240,7 @@ function Page1() {
                                 !!Utils.exec("pidof wayland-idle-inhibitor.py"),
                             );
                             self.hook(idle_inhibitor, () => {
-                                self.toggleClassName(
-                                    "active",
-                                    idle_inhibitor.value,
-                                );
+                                self.toggleClassName("active", idle_inhibitor.value ?? false);
                             });
                         },
                     }),
@@ -276,10 +267,7 @@ function Page1() {
                         },
                         setup: (self) => {
                             self.hook(night_light, () => {
-                                self.toggleClassName(
-                                    "active",
-                                    night_light.value,
-                                );
+                                self.toggleClassName("active", night_light.value ?? false);
                             });
                         },
                     }),

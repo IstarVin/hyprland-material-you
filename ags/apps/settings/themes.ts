@@ -1,10 +1,9 @@
 // by koeqaife ;)
 
-import { Variable as VariableType } from "types/variable";
 import { MaterialIcon } from "icons";
 import config from "services/configuration";
-import { type ThemeJson } from "variables";
-import { custom_theme } from "variables";
+import { Variable as VariableType } from "types/variable";
+import { custom_theme, type ThemeJson } from "variables";
 
 const config_version = "2";
 const themes_folder = `${App.configDir}/themes`;
@@ -100,14 +99,16 @@ const theme_list = () => {
         },
         setup: (self) => {
             self.hook(themes, () => {
-                box.children = [
-                    _default,
-                    ...themes.value.filter((value) => !value.hide).map((
-                        value,
-                    ) => theme(value)),
-                ];
+                try {
+                    box.children = [
+                        _default,
+                        ...themes.value.filter((value) => !value.hide).map((value) => theme(value))
+                    ];
+                } catch (e) {
+                    print("Error while reloading themes:", e);
+                }
             });
-        },
+        }
     });
     return box;
 };
