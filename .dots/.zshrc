@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/aj/.zsh/completions:"* ]]; then export FPATH="/home/aj/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -130,6 +132,8 @@ alias mpv-hehe='/mnt/AJ/Projects/mpv-shim-hehe/main'
 alias animation-off='hyprctl keyword animations:enabled 0'
 alias animation-on='hyprctl keyword animations:enabled 1'
 
+alias nvrun='switcherooctl launch -g 1'
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
@@ -139,6 +143,9 @@ eval "$(zoxide init --cmd cd zsh)"
 #if [[ $TERM != "tmux-"* && $TERM_PROGRAM != "vscode" ]]; then
 #source ~/.config/zshrc.d/dots-hyprland.zsh
 #fi
+if [[ $TERM == "xterm-kitty" ]]; then
+    alias ssh='kitty +kitten ssh'
+fi
 
 #source ~/.config/zshrc.d/auto-Hypr.sh
 # source /etc/profile
@@ -152,7 +159,6 @@ PATH="${PATH}:/opt/android-sdk/platform-tools"
 PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 PATH="/home/aj/.bun/bin:$PATH"
 
-
 # pnpm
 export PNPM_HOME="/home/aj/.local/share/pnpm"
 case ":$PATH:" in
@@ -160,3 +166,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+. "/home/aj/.deno/env"
+
+# bun completions
+[ -s "/home/aj/.bun/_bun" ] && source "/home/aj/.bun/_bun"

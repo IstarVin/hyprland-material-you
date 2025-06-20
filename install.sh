@@ -384,8 +384,6 @@ docker_setup() {
     yay -S docker docker-compose
     sudo usermod -aG docker "$USER"
     sudo systemctl enable --now docker.service
-
-
 }
 
 main() {

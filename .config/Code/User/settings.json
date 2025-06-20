@@ -6,7 +6,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -24,11 +24,12 @@
   //     "editor.defaultFormatter": "charliermarsh.ruff"
   // },
   "[svelte]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.tabSize": 2
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
   },
   "breadcrumbs.enabled": false,
   "catppuccin-icons.hidesExplorerArrows": true,
@@ -96,7 +97,7 @@
   "sqltools.useNodeRuntime": true,
   "svelte.enable-ts-plugin": true,
   "terminal.explorerKind": "external",
-  "terminal.external.linuxExec": "alacritty",
+  "terminal.external.linuxExec": "kitty",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.fontFamily": "'SpaceMono Nerd Font', 'monospace'",
   "terminal.integrated.profiles.linux": {

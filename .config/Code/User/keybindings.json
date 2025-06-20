@@ -38,6 +38,16 @@
     "command": "toggle",
     "key": "ctrl-shift-q"
   },
+  {
+    "command": "editor.action.triggerSuggest",
+    "key": "ctrl-shift-k",
+    "when": ""
+  },
+  {
+    "command": "editor.action.triggerSuggest",
+    "key": "shift-j",
+    "when": "vim.mode == 'Normal'"
+  },
 
   //Navigating
   {
@@ -416,6 +426,16 @@
   {
     "key": "ctrl-shift-w",
     "command": "workbench.action.terminal.killAll",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-p",
+    "command": "cursorUp",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl-n",
+    "command": "cursorDown",
     "when": "terminalFocus"
   }
 ]
