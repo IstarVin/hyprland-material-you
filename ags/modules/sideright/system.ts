@@ -1,11 +1,11 @@
 // by koeqaife ;)
 
-import { amount_of_ram, cpu_cores, cpu_name, cur_uptime, gpu_name, kernel_name } from "variables.ts";
 import Gtk from "gi://Gtk?version=3.0";
-import { Variable as VariableType } from "types/variable";
-import backlight_service from "services/backlight.ts";
-import { sideright } from "./main";
 import Pango10 from "gi://Pango";
+import backlight_service from "services/backlight.ts";
+import { Variable as VariableType } from "types/variable";
+import { amount_of_ram, cpu_cores, cpu_name, cur_uptime, gpu_name, kernel_name } from "variables.ts";
+import { sideright } from "./main";
 
 type InfoType = {
     cpu: string;
@@ -50,6 +50,8 @@ const usage_default = {
     ram: "0",
     swap: "0",
     cpu_temp: "0",
+    download: "0",
+    upload: "0"
 };
 
 const usage = Variable(usage_default);
