@@ -154,7 +154,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
   "[dart]": {
     "editor.formatOnSave": true,
@@ -163,5 +162,6 @@
     "editor.selectionHighlight": false,
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off"
-  }
+  },
+  "workbench.colorTheme": "Catppuccin Mocha"
 }

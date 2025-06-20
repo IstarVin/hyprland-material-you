@@ -115,7 +115,7 @@ install_packages() {
         neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
         gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector \
         python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk \
-        ttf-space-mono-nerd ttf-ms-win10-auto yt-dlp bind nmap youtube-music
+        ttf-space-mono-nerd ttf-ms-win10-auto yt-dlp bind nmap youtube-music-bin
 
     install_agsv1
 }
@@ -311,16 +311,6 @@ use_zsh() {
 aj_disk() {
     uuid="a670b2de-99ca-43e3-8c34-3fc50150c12e"
     if sudo blkid | grep $uuid >/dev/null 2>&1; then
-        sudo mkdir /mnt/AJ/
-        user=$(whoami)
-        sudo chown $user:$user /mnt/AJ/
-        echo -ne "
-# AJ
-UUID=$uuid /mnt/AJ btrfs defaults 0 2
-" | sudo tee -a /etc/fstab
-
-        sudo mount -a
-        sudo systemctl daemon-reload
 
         ln -sf /mnt/AJ $HOME/AJ
         ln -sf /mnt/AJ/{Documents,Downloads,Pictures,Projects,Videos} $HOME
@@ -328,7 +318,8 @@ UUID=$uuid /mnt/AJ btrfs defaults 0 2
         cp -r /mnt/AJ/.ssh/ $HOME
 
 
-        mkdir ~/.hehe
+        mkdir -p ~/.hehe
+        mkdir -p ~/.secrets
     fi
 }
 
@@ -414,7 +405,7 @@ main() {
 
     proceed "Proceed with installing packages?" false && install_packages
     preference_select "file manager" "filemanager" "nautilus"
-    preference_select "internet browser" "browser" "brave"
+    preference_select "internet browser" "browser" "brave-bin"
     preference_select "terminal emulator" "terminal" "alacritty"
    # proceed "Proceed with installing MicroTex?" false && install_microtex
     proceed "Proceed with setting up sensors?" false && setup_sensors
