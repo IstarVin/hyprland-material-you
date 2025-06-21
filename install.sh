@@ -110,7 +110,7 @@ install_packages() {
         fontconfig dart-sass ttf-meslo-nerd-font-powerlevel10k cpio meson cmake \
         python-materialyoucolor-git gtksourceview3 gtksourceviewmm cairomm \
         gtkmm3 tinyxml2 python-requests python-numpy lsd fzf zoxide zsh bat less \
-        python-setproctitle
+        python-setproctitle code code-features code-marketplace
 
         # sddm sddm-theme-corners-git
 
