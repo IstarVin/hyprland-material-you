@@ -1,6 +1,7 @@
 *
 !profiles
 !snippets
+!snippets/*
 !settings.json
 !keybindings.json
 !tasks.json
