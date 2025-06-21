@@ -98,8 +98,8 @@ install_packages() {
         hyprutils hyprwayland-scanner xdg-dbus-proxy xdg-desktop-portal \
         xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xdg-user-dirs \
         xdg-utils libxdg-basedir python-pyxdg swww gtk3 gtk4 \
-        adw-gtk-theme libdbusmenu-gtk3 python-pip python-pillow sddm \
-        sddm-theme-corners-git nm-connection-editor network-manager-applet \
+        adw-gtk-theme libdbusmenu-gtk3 python-pip python-pillow \
+        nm-connection-editor network-manager-applet \
         networkmanager gnome-bluetooth-3.0 wl-gammarelay-rs bluez bluez-libs bluez-utils \
         cliphist wl-clipboard libadwaita swappy nwg-look \
         pavucontrol polkit-gnome brightnessctl man-pages gvfs xarchiver zip imagemagick \
@@ -110,12 +110,9 @@ install_packages() {
         fontconfig dart-sass ttf-meslo-nerd-font-powerlevel10k cpio meson cmake \
         python-materialyoucolor-git gtksourceview3 gtksourceviewmm cairomm \
         gtkmm3 tinyxml2 python-requests python-numpy lsd fzf zoxide zsh bat less \
-        yazi p7zip fd ffmpegthumbnailer chafa poppler \
-        unzip tmux go bluetooth-autoconnect btop powertop \
-        neovim ntfs-3g nautilus-code nautilus-open-any-terminal mpv tailscale \
-        gnome-system-monitor gnome-text-editor ufw encfs seahorse gvfs-smb amdvlk reflector \
-        python-setproctitle jellyfin-mpv-shim python-pystray noto-fonts noto-fonts-emoji noto-fonts-cjk \
-        ttf-space-mono-nerd ttf-ms-win10-auto yt-dlp bind nmap youtube-music-bin
+        python-setproctitle
+
+        # sddm sddm-theme-corners-git
 
     install_agsv1
 }
@@ -284,7 +281,7 @@ setup_services() {
         echo ":: NetworkManager.service activated successfully."
     fi
 
-    sudo systemctl enable sddm
+    # sudo systemctl enable sddm
 }
 
 update_user_dirs() {
