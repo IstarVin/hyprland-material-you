@@ -110,9 +110,8 @@ install_packages() {
         fontconfig dart-sass ttf-meslo-nerd-font-powerlevel10k cpio meson cmake \
         python-materialyoucolor-git gtksourceview3 gtksourceviewmm cairomm \
         gtkmm3 tinyxml2 python-requests python-numpy lsd fzf zoxide zsh bat less \
-        python-setproctitle code code-features code-marketplace
-
-        # sddm sddm-theme-corners-git
+        python-setproctitle code code-features code-marketplace \
+        sddm sddm-theme-corners-git
 
     install_agsv1
 }
@@ -334,7 +333,7 @@ main() {
     proceed "Proceed with setting up sensors?" false && setup_sensors
     proceed "Proceed with checking config folders?*" && check_config_folders
     proceed "Proceed with installing icon themes?" false && install_icon_theme
-    # proceed "Proceed with setting up SDDM?" false && setup_sddm
+    proceed "Proceed with setting up SDDM?" false && setup_sddm
     proceed "Proceed with copying files?*" && copy_files
     proceed "Proceed with creating links?*" && create_links
     proceed "Proceed with setting up colors?*" && setup_colors
