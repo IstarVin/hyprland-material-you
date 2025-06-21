@@ -297,7 +297,11 @@ misc_tasks() {
 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
+    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
+    gsettings set org.gnome.nautilus.preferences default-folder-viewer list-view
+    gsettings set org.gnome.nautilus.list-view use-tree-view true
+    gsettings set org.gnome.nautilus.preferences show-create-link true
+    gsettings set org.gnome.nautilus.preferences show-delete-permanently true
 }
 
 use_zsh() {

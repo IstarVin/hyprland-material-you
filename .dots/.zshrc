@@ -135,6 +135,8 @@ alias animation-on='hyprctl keyword animations:enabled 1'
 
 alias nvrun='switcherooctl launch -g 1'
 
+alias source-funcs='source <(curl -s https://arch-install.pages.dev/other/functions.sh)'
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
