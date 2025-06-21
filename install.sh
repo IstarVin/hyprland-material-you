@@ -308,76 +308,81 @@ use_zsh() {
     sudo chsh -s zsh aj
 }
 
-aj_disk() {
-    uuid="a670b2de-99ca-43e3-8c34-3fc50150c12e"
-    if sudo blkid | grep $uuid >/dev/null 2>&1; then
+# aj_disk() {
+#     uuid="a670b2de-99ca-43e3-8c34-3fc50150c12e"
+#     if sudo blkid | grep $uuid >/dev/null 2>&1; then
 
-        ln -sf /mnt/AJ $HOME/AJ
-        ln -sf /mnt/AJ/{Documents,Downloads,Pictures,Projects,Videos} $HOME
+#         ln -sf /mnt/AJ $HOME/AJ
+#         ln -sf /mnt/AJ/{Documents,Downloads,Pictures,Projects,Videos} $HOME
 
-        cp -r /mnt/AJ/.ssh/ $HOME
+#         cp -r /mnt/AJ/.ssh/ $HOME
 
 
-        mkdir -p ~/.hehe
-        mkdir -p ~/.secrets
-    fi
-}
+#         mkdir -p ~/.hehe
+#         mkdir -p ~/.secrets
+#     fi
+# }
 
-plymouth_install() {
-    yay -S --noconfirm plymouth plymouth-theme-archlinux
-    if pacman -Q grub >/dev/null 2>&1; then
-        sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& splash/' /etc/default/grub
-        sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+# plymouth_install() {
+#     yay -S --noconfirm plymouth plymouth-theme-archlinux
+#     if pacman -Q grub >/dev/null 2>&1; then
+#         sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& splash/' /etc/default/grub
+#         sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 
-        sudo sed -i '/echo "\$message"/d' /etc/grub.d/10_linux
+#         sudo sed -i '/echo "\$message"/d' /etc/grub.d/10_linux
 
-        sudo grub-mkconfig -o /boot/grub/grub.cfg
-    fi
+#         sudo grub-mkconfig -o /boot/grub/grub.cfg
+#     fi
 
-    sudo sed -i '/^HOOKS/s/udev/& plymouth/' /etc/mkinitcpio.conf
+#     sudo sed -i '/^HOOKS/s/udev/& plymouth/' /etc/mkinitcpio.conf
 
-    sudo plymouth-set-default-theme -R archlinux
-}
+#     sudo plymouth-set-default-theme -R archlinux
+# }
 
-evremap_install() {
-    cd $main_cwd
+# evremap_install() {
+#     cd $main_cwd
 
-    yay -S --noconfirm evremap
-    sudo cp -f evremap/evremap.toml /etc
-    sudo cp -f evremap/evremap.service /etc/systemd/user
-    sudo systemctl enable --now evremap
-}
+#     yay -S --noconfirm evremap
+#     sudo cp -f evremap/evremap.toml /etc
+#     sudo cp -f evremap/evremap.service /etc/systemd/user
+#     sudo systemctl enable --now evremap
+# }
 
-rog_install() {
-    if ! pacman -Q cachyos-mirrorlist >/dev/null 2>&1; then
-        sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-        sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-        sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-        sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+# rog_install() {
+#     if ! pacman -Q cachyos-mirrorlist >/dev/null 2>&1; then
+#         sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+#         sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+#         sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+#         sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
 
-        wget "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8b15a6b0e9a3fa35" -O /tmp/g14.sec
-        sudo pacman-key -a /tmp/g14.sec
-        rm /tmp/g14.sec
+#         wget "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8b15a6b0e9a3fa35" -O /tmp/g14.sec
+#         sudo pacman-key -a /tmp/g14.sec
+#         rm /tmp/g14.sec
 
-        echo -ne "
- [g14]
- Server = https://arch.asus-linux.org
- " | sudo tee -a /etc/pacman.conf
-    fi
+#         echo -ne "
+#  [g14]
+#  Server = https://arch.asus-linux.org
+#  " | sudo tee -a /etc/pacman.conf
+#     fi
 
-    sudo pacman -Suy --noconfirm asusctl power-profiles-daemon supergfxctl switcheroo-control
-    sudo systemctl enable --now power-profiles-daemon supergfxd switcheroo-control
+#     sudo pacman -Suy --noconfirm asusctl power-profiles-daemon supergfxctl switcheroo-control
+#     sudo systemctl enable --now power-profiles-daemon supergfxd switcheroo-control
 
-    asusctl -c 60
-    asusctl led-mode static -c 614F9A
-    echo "Skip if fail"
-}
+#     asusctl -c 60
+#     asusctl led-mode static -c 614F9A
+#     echo "Skip if fail"
+# }
 
-rog_setup() {
-    if hostnamectl status | grep ROG >/dev/null 2>&1; then
-        rog_install
-        evremap_install
-    fi
+# rog_setup() {
+#     if hostnamectl status | grep ROG >/dev/null 2>&1; then
+#         rog_install
+#         evremap_install
+#     fi
+# }
+
+ly_setup() {
+    yay -S --noconfirm --needed ly
+    sudo systemctl enable ly
 }
 
 docker_setup() {
@@ -404,12 +409,12 @@ main() {
     proceed "Proceed with installing packages?" false && install_packages
     preference_select "file manager" "filemanager" "nautilus"
     preference_select "internet browser" "browser" "brave-bin"
-    preference_select "terminal emulator" "terminal" "alacritty"
+    preference_select "terminal emulator" "terminal" "kitty"
    # proceed "Proceed with installing MicroTex?" false && install_microtex
     proceed "Proceed with setting up sensors?" false && setup_sensors
     proceed "Proceed with checking config folders?*" && check_config_folders
     proceed "Proceed with installing icon themes?" false && install_icon_theme
-    proceed "Proceed with setting up SDDM?" false && setup_sddm
+    # proceed "Proceed with setting up SDDM?" false && setup_sddm
     proceed "Proceed with copying files?*" && copy_files
     proceed "Proceed with creating links?*" && create_links
     proceed "Proceed with setting up colors?*" && setup_colors
@@ -418,9 +423,10 @@ main() {
     proceed "Proceed with setting up services?*" && setup_services
     # proceed "Proceed with updating user directories?*" && update_user_dirs
     proceed "Proceed with miscellaneous tasks?*" && misc_tasks
-    proceed "Plymouth Install" && plymouth_install
-    proceed "Setup ROG" && rog_setup
-    proceed "Setup AJ Disk" && aj_disk
+    # proceed "Plymouth Install" && plymouth_install
+    # proceed "Setup ROG" && rog_setup
+    # proceed "Setup AJ Disk" && aj_disk
+    proceed "Setup Ly DM" && ly_setup
 
     echo "Please restart your PC"
 }
