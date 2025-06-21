@@ -81,12 +81,12 @@ install_yay() {
 
 install_microtex() {
     cd ~/dotfiles/setup/MicroTex/
-    execute_command makepkg -si
+    execute_command makepkg -si --noconfirm --needed
 }
 
 install_agsv1() {
     cd ~/dotfiles/setup/agsv1/
-    execute_command makepkg -si
+    execute_command makepkg -si --noconfirm --needed
 }
 
 install_packages() {
