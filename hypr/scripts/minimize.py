@@ -4,6 +4,7 @@ import os
 import subprocess
 import json
 import argparse
+import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument("window", type=str)
@@ -27,8 +28,8 @@ for i in clients:
         break
 
 if not exists:
-    os.system(f"hyprctl dispatch exec [float] '{args.exec}'")
-    os.system(f"hyprctl dispatch focuswindow {args.window}")
+    subprocess.run(['hyprctl', 'dispatch', 'exec', '[float]', args.exec])
+    subprocess.run(['hyprctl', 'dispatch', 'focuswindow', args.window])
     print("started")
     exit()
 
@@ -47,13 +48,15 @@ else:
     current_workspace = json.loads(current_wokrspace_json)["id"]
     ws = current_workspace
 
+# time.sleep(2)
 
 if window["workspace"]["id"] != current_workspace:
-    os.system(f"hyprctl dispatch movetoworkspacesilent {ws},{args.window}")
-    os.system(f"hyprctl dispatch focuswindow {args.window}")
+    print(ws, args.window)
+    subprocess.run(['hyprctl', 'dispatch', 'movetoworkspacesilent', f'{ws},{args.window}'])
+    subprocess.run(['hyprctl', 'dispatch', 'focuswindow', args.window])
 
 else:
     if window["focusHistoryID"] == 0:
-        os.system(f"hyprctl dispatch movetoworkspacesilent 99,{args.window}")
+        subprocess.run(['hyprctl', 'dispatch', 'movetoworkspacesilent', f'99,{args.window}'])
     else:
-        os.system(f"hyprctl dispatch focuswindow {args.window}")
+        subprocess.run(['hyprctl', 'dispatch', 'focuswindow', args.window])

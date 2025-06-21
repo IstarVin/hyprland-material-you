@@ -2,6 +2,16 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -14,15 +24,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // "[json]": {
-  //     "editor.defaultFormatter": "denoland.vscode-deno"
-  // },
-  // "[jsonc]": {
-  //     "editor.defaultFormatter": "denoland.vscode-deno"
-  // },
-  // "[python]": {
-  //     "editor.defaultFormatter": "charliermarsh.ruff"
-  // },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.tabSize": 2
@@ -30,6 +31,9 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "breadcrumbs.enabled": false,
   "catppuccin-icons.hidesExplorerArrows": true,
@@ -54,12 +58,30 @@
   "editor.hover.enabled": true,
   "editor.insertSpaces": true,
   "editor.language.colorizedBracketPairs": [
-    ["<", "/>"],
-    ["<", ">"],
-    ["</", ">"],
-    ["{", "}"],
-    ["[", "]"],
-    ["(", ")"]
+    [
+      "<",
+      "/>"
+    ],
+    [
+      "<",
+      ">"
+    ],
+    [
+      "</",
+      ">"
+    ],
+    [
+      "{",
+      "}"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "(",
+      ")"
+    ]
   ],
   "editor.lightbulb.enabled": "off",
   "editor.matchBrackets": "near",
@@ -127,8 +149,12 @@
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
-      "before": [":"],
-      "commands": ["workbench.action.quickOpen"],
+      "before": [
+        ":"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ],
       "silent": true
     }
   ],
@@ -142,7 +168,9 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1.25,
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -151,18 +179,5 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.iconTheme": "catppuccin-mocha",
-  "[dart]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.rulers": [80],
-    "editor.selectionHighlight": false,
-    "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": "off"
-  },
-  "workbench.colorTheme": "Catppuccin Mocha"
+  "zenMode.showTabs": "none"
 }

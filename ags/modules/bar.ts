@@ -63,6 +63,9 @@ Utils.interval(1000, getCurrentDateAndTime);
 
 function getIconNameFromClass(windowClass: string) {
     try {
+        if (windowClass === 'com.github.th_ch.youtube_music') {
+            windowClass = 'youtube-music'
+        }
         let formattedClass = windowClass.replace(/\s+/g, "-").toLowerCase();
         let homeDir = GLib.get_home_dir();
         let systemDataDirs = GLib.get_system_data_dirs().map((dir) => dir + "/applications");
@@ -110,9 +113,11 @@ function getIconNameFromClass(windowClass: string) {
 
 const dispatch = (ws: string) => hyprland.messageAsync(`dispatch workspace ${ws}`).catch(print);
 
+
 function Workspaces() {
     let workspace_buttons = new Map<Number, ReturnType<typeof createWorkspaceButton>>();
     const workspace_buttons_array: VariableType<Button<any, any>[] | any> = Variable([]);
+    let currentWorkspaceGroup = 0;
 
     function createWorkspaceButton(id: Number) {
         return Widget.Button({
@@ -124,13 +129,20 @@ function Workspaces() {
     }
 
     function initializeWorkspaceButtons() {
-        for (let i = 1; i <= 10; i++) {
+        const addition = currentWorkspaceGroup * 10
+        workspace_buttons.clear()
+        for (let i = 1 + addition; i <= 10 + addition; i++) {
             workspace_buttons.set(i, createWorkspaceButton(i));
         }
         workspace_buttons_array.setValue(Array.from(workspace_buttons.values()));
     }
 
     function update() {
+        const asd = Array.from(workspace_buttons.keys()) as number[]
+        const previous = Math.floor(asd[0] / 10)
+        if (previous !== currentWorkspaceGroup) {
+            initializeWorkspaceButtons()
+        }
         workspace_buttons.forEach((workspace) => {
             const existingWorkspace = hyprland.workspaces.some((element) => element.id === workspace.attribute.id);
             if (config.config.hide_empty_workspaces) {
@@ -155,11 +167,15 @@ function Workspaces() {
     }
 
     hyprland.connect("notify::workspaces", () => {
+        currentWorkspaceGroup = Math.floor((hyprland.active.workspace.id - 1) / 10);
         activeWorkspace();
         update();
+        
     });
     hyprland.connect("notify::active", () => {
+        currentWorkspaceGroup = Math.floor((hyprland.active.workspace.id - 1) / 10);
         activeWorkspace();
+        update();
     });
     config.connect("notify::config", () => update());
 
@@ -532,9 +548,10 @@ function TaskBar() {
         });
 
         clients.forEach((client) => {
-            if (client.class === "Alacritty") return;
+            if (client.class === "Alacritty" || client.class === 'kitty') return;
 
             let widget = globalWidgets.find((w) => w.attribute.client.address === client.address);
+
             if (widget) {
                 widget.tooltip_markup = client.title;
             } else {
