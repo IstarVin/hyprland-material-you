@@ -5,9 +5,7 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [
-      80
-    ],
+    "editor.rulers": [80],
     "editor.selectionHighlight": false,
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off"
@@ -58,30 +56,12 @@
   "editor.hover.enabled": true,
   "editor.insertSpaces": true,
   "editor.language.colorizedBracketPairs": [
-    [
-      "<",
-      "/>"
-    ],
-    [
-      "<",
-      ">"
-    ],
-    [
-      "</",
-      ">"
-    ],
-    [
-      "{",
-      "}"
-    ],
-    [
-      "[",
-      "]"
-    ],
-    [
-      "(",
-      ")"
-    ]
+    ["<", "/>"],
+    ["<", ">"],
+    ["</", ">"],
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
   ],
   "editor.lightbulb.enabled": "off",
   "editor.matchBrackets": "near",
@@ -102,6 +82,7 @@
   "editor.wordWrap": "off",
   "explorer.excludeGitIgnore": false,
   "explorer.incrementalNaming": "smart",
+  "extensions.ignoreRecommendations": true,
   "files.associations": {
     ".env*": "dotenv"
   },
@@ -114,8 +95,11 @@
     "plaintext": false,
     "scminput": false
   },
+  "javascript.suggest.autoImports": true,
+  "typescript.preferences.importModuleSpecifier": "shortest",
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
+  "python.languageServer": "Pylance",
   "sqltools.useNodeRuntime": true,
   "svelte.enable-ts-plugin": true,
   "terminal.explorerKind": "external",
@@ -149,12 +133,8 @@
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        ":"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ],
+      "before": [":"],
+      "commands": ["workbench.action.quickOpen"],
       "silent": true
     }
   ],

@@ -66,6 +66,12 @@ function getIconNameFromClass(windowClass: string) {
         if (windowClass === 'com.github.th_ch.youtube_music') {
             windowClass = 'youtube-music'
         }
+        if (windowClass.includes('deepseek')) {
+            return Utils.lookUpIcon('deepseek') ? 'deepseek' : "image-missing";
+        } else if (windowClass.includes('chatgpt')) {
+            return Utils.lookUpIcon('chatgpt') ? 'chatgpt' : "image-missing";
+        }
+        
         let formattedClass = windowClass.replace(/\s+/g, "-").toLowerCase();
         let homeDir = GLib.get_home_dir();
         let systemDataDirs = GLib.get_system_data_dirs().map((dir) => dir + "/applications");

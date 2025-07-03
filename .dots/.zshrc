@@ -162,6 +162,7 @@ PATH="/home/aj/.local/bin/:/home/aj/.bin:/home/aj/.config/hypr/scripts:$PATH"
 PATH="${PATH}:/opt/android-sdk/platform-tools"
 PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 PATH="/home/aj/.bun/bin:$PATH"
+PATH="/home/aj/.local/share/JetBrains/Toolbox/scripts:$PATH"
 
 # bun completions
 [ -s "/home/aj/.bun/_bun" ] && source "/home/aj/.bun/_bun"

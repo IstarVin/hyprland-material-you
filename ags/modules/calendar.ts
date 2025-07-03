@@ -163,7 +163,7 @@ export const calendar = popupwindow({
     name: WINDOW_NAME,
     class_name: "calendar",
     visible: false,
-    keymode: "exclusive",
+    keymode: "on-demand",
     child: calendar_widget(),
     anchor: ["top", "right"],
 });

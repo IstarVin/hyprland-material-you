@@ -1,6 +1,6 @@
 {
     "browser": "brave",
-    "editor": "nvim",
+    "editor": "gnome-text-editor",
     "filemanager": "nautilus",
     "terminal": "kitty"
 }

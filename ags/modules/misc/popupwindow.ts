@@ -1,7 +1,7 @@
+import Gtk from "gi://Gtk?version=3.0";
 import App from "resource:///com/github/Aylur/ags/app.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { Window, WindowProps } from "types/widgets/window";
-import Gtk from "gi://Gtk?version=3.0";
 
 type _WindowProps =
     | WindowProps<any, unknown, Window<any, unknown>>
