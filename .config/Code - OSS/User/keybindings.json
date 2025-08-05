@@ -44,6 +44,14 @@
     "when": ""
   },
   {
+    "command": "editor.action.formatDocument",
+    "key": "ctrl-alt-f"
+  },
+  {
+    "command": "editor.action.formatSelection",
+    "key": "ctrl-alt-shift-f"
+  },
+  {
     "command": "editor.action.triggerSuggest",
     "key": "shift-j",
     "when": "vim.mode == 'Normal'"

@@ -14,7 +14,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -84,7 +84,8 @@
   "explorer.incrementalNaming": "smart",
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    ".env*": "dotenv"
+    ".env*": "dotenv",
+    "*.css": "tailwindcss"
   },
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
@@ -148,9 +149,7 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1.25,
-  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -159,5 +158,9 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none"
+  "zenMode.showTabs": "none",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "editor.suggestSelection": "recentlyUsed",
+  "editor.suggest.localityBonus": true
 }

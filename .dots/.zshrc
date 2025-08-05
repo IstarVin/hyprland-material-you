@@ -95,8 +95,12 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+if [[ $TERM == "xterm-kitty" ]]; then
+  alias ssh='kitty +kitten ssh'
+fi
+
 # aliases
-alias ls='lsd'
+alias l='lsd'
 # alias vim='nvim'
 alias c='clear'
 alias ll='lsd -lh'
@@ -127,6 +131,7 @@ alias keyboard_color='asusctl aura static -c 803dba'
 alias home-server='ssh home-server'
 alias aj-server='ssh aj-server'
 alias source-zsh='source ~/.zshrc'
+alias ip='ip -c'
 
 alias mpv-hehe='/mnt/AJ/Projects/mpv-shim-hehe/main'
 
@@ -137,9 +142,16 @@ alias nvrun='switcherooctl launch -g 1'
 
 alias source-funcs='source <(curl -s https://arch-install.pages.dev/other/functions.sh)'
 
+alias kali='distrobox enter kali'
+alias factordb='uv --directory /mnt/AJ/Projects/factordb run /mnt/AJ/Projects/factordb/factordb.py'
+alias pcrt='python2 /mnt/AJ/Projects/ctf/PCRT/PCRT.py'
+alias grepico='grep -o "picoCTF{.*}"'
+alias copy='wl-copy'
+alias grepicopy='grepico|copy'
+
 # Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 # eval "$(starship init zsh)"
 # eval "$(warp-cli generate-completions zsh)"
 
@@ -147,9 +159,6 @@ eval "$(zoxide init --cmd cd zsh)"
 #source ~/.config/zshrc.d/dots-hyprland.zsh
 #fi
 #
-if [[ $TERM == "xterm-kitty" ]]; then
-  alias ssh='kitty +kitten ssh'
-fi
 
 #source ~/.config/zshrc.d/auto-Hypr.sh
 # source /etc/profile
@@ -163,6 +172,8 @@ PATH="${PATH}:/opt/android-sdk/platform-tools"
 PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 PATH="/home/aj/.bun/bin:$PATH"
 PATH="/home/aj/.local/share/JetBrains/Toolbox/scripts:$PATH"
+PATH="/home/aj/.local/share/gem/ruby/3.4.0/bin:$PATH"
+PATH="/home/aj/.deno/bin:$PATH"
 
 # bun completions
 [ -s "/home/aj/.bun/_bun" ] && source "/home/aj/.bun/_bun"
