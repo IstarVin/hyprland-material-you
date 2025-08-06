@@ -33,7 +33,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "breadcrumbs.enabled": false,
   "catppuccin-icons.hidesExplorerArrows": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
@@ -79,6 +78,8 @@
   "editor.selectionHighlight": false,
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": false,
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "recentlyUsed",
   "editor.wordWrap": "off",
   "explorer.excludeGitIgnore": false,
   "explorer.incrementalNaming": "smart",
@@ -97,7 +98,6 @@
     "scminput": false
   },
   "javascript.suggest.autoImports": true,
-  "typescript.preferences.importModuleSpecifier": "shortest",
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
   "python.languageServer": "Pylance",
@@ -130,6 +130,7 @@
   "terminal.integrated.shellIntegration.history": 1000,
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.stickyScroll.enabled": true,
+  "typescript.preferences.importModuleSpecifier": "shortest",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
@@ -149,7 +150,9 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1.25,
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -158,9 +161,5 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none",
-  "workbench.colorTheme": "Catppuccin Mocha",
-  "workbench.iconTheme": "catppuccin-mocha",
-  "editor.suggestSelection": "recentlyUsed",
-  "editor.suggest.localityBonus": true
+  "zenMode.showTabs": "none"
 }
