@@ -1,0 +1,160 @@
+#!/bin/zsh
+
+# CTF Challenge Manager
+# Usage: ctf <command>
+# Commands: init, solved
+
+# Prevent writing to the history file
+HISTFILE="$HOME/.zsh_history"
+
+#setopt NO_APPEND_HISTORY
+#setopt NO_INC_APPEND_HISTORY
+#setopt NO_SHARE_HISTORY
+
+alias py='python3'
+
+# Load history into this shell process
+fc -R "$HISTFILE"
+
+# Function to get current history count
+get_history_count() {
+    history | tail -1 | awk '{print $1}'
+}
+
+# Function to find the last "ctf init" command in history
+find_last_init() {
+    history 200 | grep -P "^\s+\d+\s+ctf\s+init" | tail -1 | awk '{print $1}'
+}
+
+# Function to extract commands from history
+extract_commands() {
+    local start_num="$1"
+    local end_num="$2"
+
+    # Get commands from start to end, excluding the "ctf solved" command at the end
+    history | awk -v start="$start_num" -v end="$((end_num - 1))" '
+        $1 >= start && $1 <= end {
+            # Remove the history number and print the rest
+            $1 = "";
+            sub(/^ +/, "");
+            if ($0 !~ /^ctf (init|solved)/) print $0
+        }
+    '
+}
+
+# Initialize a new challenge
+init_challenge() {
+    local current_count=$(get_history_count)
+
+    echo "🚀 CTF Challenge initialized"
+    echo "🔗 History anchor set at: $current_count"
+    echo "Run 'ctf solved' when you complete the challenge!"
+
+    echo "$(pwd)" > /tmp/ctf_dir
+}
+
+# Mark challenge as solved
+solve_challenge() {
+    # Find the last "ctf init" command
+    #local start_count=$(find_last_init)
+    
+    local solvedTxt="$(pwd)/solved.txt" 
+    
+    if [[ -f $solvedTxt ]]; then
+    	echo "🎉 Challenge solved!"
+    	flag=$(cat $solvedTxt)
+        echo "🏁 Flag: $flag"
+	echo $flag | wl-copy
+    	mark_as_solved "$(pwd)"
+    	return 0
+    fi
+
+    #if [[ -z "$start_count" ]]; then
+    #    echo "❌ No 'ctf init' found in history. Run 'ctf init' first."
+    #    return 1
+    #fi
+
+    # Get current history count
+    local end_count=$(get_history_count)
+
+    echo "🎉 Challenge solved!"
+    #echo "📝 Extracting commands from $start_count to $end_count..."
+
+    # Create solved.sh file in current directory
+    local solved_file="./solved.sh"
+
+    # Extract and save commands
+    #extract_commands "$((start_count + 1))" "$end_count" > "$solved_file"
+
+    # if [[ $? -eq 0 ]]; then
+    #     chmod +x "$solved_file"
+    #     echo "✅ Commands saved to: $solved_file"
+
+    #     # Get the last command (the one before "ctf solved")
+    #     local last_cmd=$(history | awk -v num="$((end_count - 1))" '$1 == num {$1 = ""; sub(/^ +/, ""); print $0}')
+    #     if [[ -n "$last_cmd" && "$last_cmd" != "ctf solved" ]]; then
+    #         echo "🔄 Last command: $last_cmd"
+	#     flag=$(eval $last_cmd)
+	#     echo "🏁 Flag: $flag"
+	#     echo $flag | wl-copy
+	#     mark_as_solved "$(cat /tmp/ctf_dir)"
+    #     fi
+
+    # else
+    #     echo "❌ Error extracting commands from history"
+    #     return 1
+    # fi
+
+    local last_cmd=$(history | awk -v num="$((end_count - 1))" '$1 == num {$1 = ""; sub(/^ +/, ""); print $0}')
+    local flag=$(eval $last_cmd)
+
+    echo "$last_cmd" > "$solved_file"
+    chmod +x "$solved_file"
+    echo "$last_cmd" > "$solved_file"
+
+    echo $flag | wl-copy
+    echo "🏁 Flag: $flag"
+
+    mark_as_solved "$(pwd)"
+
+    echo "✨ Challenge completed!"
+}
+
+mark_as_solved() {
+    folder="$1"
+    mv "$folder" "$folder (SOLVED)"
+}
+
+grep_flag() {
+    prefix=$1
+    grep -io "${prefix}{.*}"
+}
+
+set_flag() {
+    local flag=$1
+    echo "🏁 Flag: $flag"
+    echo "$flag" > solved.txt
+    echo "$flag" | wl-copy
+
+    mark_as_solved "$(pwd)"
+}
+
+# Main command handler
+case "$1" in
+    "init")
+        init_challenge
+        ;;
+    "solved")
+        solve_challenge
+        ;;
+    "grep")
+	grep_flag $2
+	;;
+    "flag")
+	set_flag $2
+	;;
+    *)
+        echo "❌ Usage: ctf init|solved|grep"
+        exit 1
+        ;;
+esac

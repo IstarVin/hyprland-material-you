@@ -34,6 +34,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "catppuccin-icons.hidesExplorerArrows": true,
+  "chat.mcp.autostart": "newAndOutdated",
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
     "source.sortImports": "always"
@@ -93,10 +94,12 @@
   "github.copilot.enable": {
     "*": false,
     "dotenv": false,
-    "markdown": true,
+    "markdown": false,
     "plaintext": false,
     "scminput": false
   },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
   "javascript.suggest.autoImports": true,
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
@@ -154,6 +157,7 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   "workbench.tips.enabled": false,

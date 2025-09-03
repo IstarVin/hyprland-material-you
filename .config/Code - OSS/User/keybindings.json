@@ -56,6 +56,39 @@
     "key": "shift-j",
     "when": "vim.mode == 'Normal'"
   },
+  {
+    "command": "inlineChat.start",
+    "key": "ctrl-i"
+  },
+  {
+    "command": "workbench.action.chat.toggleAgentMode",
+    "key": "ctrl-shift-m",
+    "when": "chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.chat.openModelPicker",
+    "key": "ctrl-m",
+    "when": "chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.chat.toggle",
+    "key": "ctrl-g"
+  },
+  {
+    "command": "editor.action.increaseHoverVerbosityLevel",
+    "key": "shift-k",
+    "when": "editorHoverFocused"
+  },
+  {
+    "command": "editor.action.decreaseHoverVerbosityLevel",
+    "key": "shift-j",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl-shift-m",
+    "when": "terminalFocus",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
 
   //Navigating
   {

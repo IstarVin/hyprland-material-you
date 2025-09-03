@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
 useCode=0
+useCodeInsider=0
 args=$@
 
-if [[ "$@" == *"--code"* ]]; then
+if [[ "$@" == *"--code-insider"* ]]; then
+    useCodeInsider=1
+    args=($(printf "%s\n" "$@" | grep -v -- '--code-insider'))
+    echo $args
+elif [[ "$@" == *"--code"* ]]; then
     useCode=1
     args=($(printf "%s\n" "$@" | grep -v -- '--code'))
     echo $args
 fi
+
 if [[ -n "$args" ]]; then
     selected=$args
 else
@@ -44,6 +50,11 @@ fi
 
 if [[ $useCode -eq 1 ]]; then
     code "$selected"
+    exit 0
+fi
+
+if [[ $useCodeInsider -eq 1 ]]; then
+    code-insiders "$selected"
     exit 0
 fi
 

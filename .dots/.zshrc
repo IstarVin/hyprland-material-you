@@ -96,6 +96,7 @@ function yy() {
 }
 
 if [[ $TERM == "xterm-kitty" ]]; then
+  alias sssh='TERM=xterm-256color KITTY_DISABLE_SSH=1 /bin/ssh'
   alias ssh='kitty +kitten ssh'
 fi
 
@@ -149,6 +150,11 @@ alias grepico='grep -o "picoCTF{.*}"'
 alias copy='wl-copy'
 alias grepicopy='grepico|copy'
 
+alias jwt_tool='docker run -it --network "host" --rm -v "${PWD}:/tmp" -v "${HOME}/.jwt_tool:/root/.jwt_tool" ticarpi/jwt_tool'
+
+alias mkdir_ctf='mkdir -p {Forensics,Web\ Exploitation,Cryptography,Reverse\ Engineering,General\ Skills,Binary\ Exploitation,Others}'
+
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
@@ -186,3 +192,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export ROCKYOU="/usr/share/dict/rockyou.txt"
