@@ -153,7 +153,6 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1.25,
-  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
@@ -165,5 +164,7 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none"
+  "zenMode.showTabs": "none",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "redhat.telemetry.enabled": true
 }
