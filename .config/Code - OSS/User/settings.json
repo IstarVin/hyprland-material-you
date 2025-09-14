@@ -165,6 +165,6 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
   "zenMode.showTabs": "none",
-  "workbench.colorTheme": "Catppuccin Mocha",
-  "redhat.telemetry.enabled": true
+  "redhat.telemetry.enabled": true,
+  "workbench.colorTheme": "Catppuccin Mocha"
 }
