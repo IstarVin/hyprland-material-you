@@ -25,7 +25,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+#zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -55,15 +55,14 @@ function zvm_after_init() {
     bindkey '^p' history-search-backward
     bindkey '^n' history-search-forward
     bindkey '^[w' kill-region
+    bindkey '^[^[' prepend-sudo
 }
-# bindkey -v
-#bindkey '^p' history-search-backward
-#bindkey '^n' history-search-forward
+bindkey -v
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+bindkey '^o' autosuggest-accept
 #bindkey '^[w' kill-region
-# bindkey '^o' autosuggest-accept
-# bindkey '^p' history-search-backward
-# bindkey '^n' history-search-forward
-# bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
