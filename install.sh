@@ -233,6 +233,7 @@ create_links() {
     ln -s $HOME/dotfiles/alacritty $HOME/.config/alacritty
     ln -s $HOME/dotfiles/hypr $HOME/.config/hypr
     ln -s $HOME/dotfiles/swappy $HOME/.config/swappy
+    ln -sf "$HOME/dotfiles/.config/Code - OSS" $HOME/.config/Code
 
     cd $main_cwd
 
@@ -302,6 +303,8 @@ misc_tasks() {
     gsettings set org.gnome.nautilus.list-view use-tree-view true
     gsettings set org.gnome.nautilus.preferences show-create-link true
     gsettings set org.gnome.nautilus.preferences show-delete-permanently true
+
+    sudo sed -i 's/session_log = ly-session.log/session_log = .ly-session.log/' /etc/ly/config.ini
 }
 
 use_zsh() {
