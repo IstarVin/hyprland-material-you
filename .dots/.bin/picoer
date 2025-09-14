@@ -1,26 +1,21 @@
 #!/usr/bin/env bash
 
-useCode=0
-useCodeInsider=0
+useCode=1
 args=$@
 
-if [[ "$@" == *"--code-insider"* ]]; then
-    useCodeInsider=1
-    args=($(printf "%s\n" "$@" | grep -v -- '--code-insider'))
-    echo $args
-elif [[ "$@" == *"--code"* ]]; then
-    useCode=1
+#ctfPath="/home/aj/Projects/ctf/trend-micro-prelims/"
+ctfPath="/home/aj/Projects/ctf/picoctf/"
+
+if [[ "$@" == *"--tmux"* ]]; then
+    useCode=0
     args=($(printf "%s\n" "$@" | grep -v -- '--code'))
     echo $args
 fi
-
 if [[ -n "$args" ]]; then
     selected=$args
 else
-    paths=$(find ~/Projects/ -mindepth 1 -maxdepth 1 -type d)
-    paths+=$(printf "\n%s" "/home/aj/dotfiles")
+    paths=$(find ${ctfPath} -mindepth 1 -maxdepth 1 -type d)
     paths+=$(printf "\n%s" "create-new")
-    #paths+=$(printf "\n%s" "git-clone")
     selected=$(echo "$paths" | fzf)
 fi
 
@@ -32,29 +27,13 @@ if [[ $selected == "create-new" ]]; then
     echo "Enter new project name: "
     read project_name
 
-    selected="/home/aj/Projects/$project_name"
-    echo $selected
-    mkdir $selected
-fi
-
-if [[ $selected == "git-clone" ]]; then
-    echo "Enter git link: "
-    read git_link
-
-    git clone $git_link
-
-    selected="/home/aj/Projects/$project_name"
+    selected="${ctfPath}/${project_name}"
     echo $selected
     mkdir $selected
 fi
 
 if [[ $useCode -eq 1 ]]; then
     code "$selected"
-    exit 0
-fi
-
-if [[ $useCodeInsider -eq 1 ]]; then
-    code-insiders "$selected"
     exit 0
 fi
 

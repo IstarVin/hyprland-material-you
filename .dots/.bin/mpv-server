@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /home/aj/Projects/mpv-web-extension/server
+bun run start

@@ -14,7 +14,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -33,8 +33,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "breadcrumbs.enabled": false,
   "catppuccin-icons.hidesExplorerArrows": true,
+  "chat.mcp.autostart": "newAndOutdated",
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
     "source.sortImports": "always"
@@ -79,24 +79,28 @@
   "editor.selectionHighlight": false,
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": false,
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "recentlyUsed",
   "editor.wordWrap": "off",
   "explorer.excludeGitIgnore": false,
   "explorer.incrementalNaming": "smart",
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    ".env*": "dotenv"
+    ".env*": "dotenv",
+    "*.css": "tailwindcss"
   },
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": false,
     "dotenv": false,
-    "markdown": true,
+    "markdown": false,
     "plaintext": false,
     "scminput": false
   },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
   "javascript.suggest.autoImports": true,
-  "typescript.preferences.importModuleSpecifier": "shortest",
   "prettier.tabWidth": 2,
   "problems.decorations.enabled": false,
   "python.languageServer": "Pylance",
@@ -129,6 +133,7 @@
   "terminal.integrated.shellIntegration.history": 1000,
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.stickyScroll.enabled": true,
+  "typescript.preferences.importModuleSpecifier": "shortest",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.cursorStylePerMode.replace": "underline",
   "vim.normalModeKeyBindings": [
@@ -148,10 +153,10 @@
   "window.restoreWindows": "none",
   "window.titleBarStyle": "native",
   "window.zoomLevel": 1.25,
-  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.layoutControl.enabled": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   "workbench.tips.enabled": false,
@@ -159,5 +164,7 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "none"
+  "zenMode.showTabs": "none",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "redhat.telemetry.enabled": true
 }
