@@ -234,6 +234,8 @@ create_links() {
     ln -s $HOME/dotfiles/swappy $HOME/.config/swappy
     ln -sf "$HOME/dotfiles/.config/Code - OSS" $HOME/.config/Code
 
+    ln -sf "$HOME/dotfiles/.config/electron-flags.conf" $HOME/.config/youtube-music-flags.conf
+
     cd $main_cwd
 
     find .dots -maxdepth 1 -mindepth 1 |
